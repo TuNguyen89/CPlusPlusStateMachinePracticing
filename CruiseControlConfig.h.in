@@ -1,0 +1,4 @@
+// the configured options and settings for CruiseControl
+
+#define CruiseControl_VERSION_MAJOR @CruiseControl_VERSION_MAJOR@
+#define CruiseControl_VERSION_MINOR @CruiseControl_VERSION_MINOR@

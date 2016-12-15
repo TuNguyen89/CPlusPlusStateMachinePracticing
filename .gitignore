@@ -34,3 +34,7 @@
 *.out
 *.app
 
+Debug/*
+Win32/*
+CruiseControl.VC.db
+
