@@ -15,7 +15,8 @@ configure_file (
     
 # add the binary tree to the search path for include files
 # so that we will find CruiseControl.h
-include_directories("${PROJECT_BINARY_DIR}")
+include_directories("${PROJECT_BINARY_DIR}/test")
+include_directories("${PROJECT_BINARY_DIR}/include")
 include_directories("${PROJECT_BINARY_DIR}/src")
 
 add_executable(CruiseControl
