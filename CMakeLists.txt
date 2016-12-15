@@ -18,4 +18,14 @@ configure_file (
 include_directories("${PROJECT_BINARY_DIR}")
 include_directories("${PROJECT_BINARY_DIR}/src")
 
-add_executable(CruiseControl src/CruiseControl.cpp test/CruiseControl_test.cpp)
+add_executable(CruiseControl
+               src/CruiseControl.cpp
+               src/CruiseControlAccState.cpp
+               src/CruiseControlActiveState.cpp
+               src/CruiseControlOffState.cpp
+               src/CruiseControlReadyState.cpp
+               src/CruiseControlSetState.cpp
+               src/CruiseControlState.cpp
+               src/CruiseControlWaitState.cpp
+               src/Vehicle.cpp
+               test/CruiseControl_test.cpp)

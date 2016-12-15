@@ -38,3 +38,10 @@ Debug/*
 Win32/*
 CruiseControl.VC.db
 
+CMakeFiles/
+*.opendb
+*.log
+.vs/
+*.vcxproj
+*.filters
+*.sln
