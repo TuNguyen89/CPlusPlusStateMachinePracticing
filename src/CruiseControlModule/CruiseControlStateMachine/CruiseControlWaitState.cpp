@@ -3,8 +3,7 @@
 #include "CruiseControlWaitState.h"
 
 CruiseControlWaitState::CruiseControlWaitState() {
-	// TODO Auto-generated constructor stub
-
+   // TODO Auto-generated constructor stub
 }
 
 CruiseControlWaitState::~CruiseControlWaitState() {

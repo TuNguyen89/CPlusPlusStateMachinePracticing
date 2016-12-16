@@ -2,7 +2,9 @@
 #ifndef CRUISECONTROLSETSTATE_H_
 #define CRUISECONTROLSETSTATE_H_
 
-class CruiseControlSetState {
+#include "CruiseControlActiveState.h"
+
+class CruiseControlSetState : public CruiseControlActiveState {
 public:
 	CruiseControlSetState();
 	virtual ~CruiseControlSetState();

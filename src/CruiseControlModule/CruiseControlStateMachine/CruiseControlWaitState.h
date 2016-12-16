@@ -2,7 +2,9 @@
 #ifndef CRUISECONTROLWAITSTATE_H_
 #define CRUISECONTROLWAITSTATE_H_
 
-class CruiseControlWaitState {
+#include "CruiseControlActiveState.h"
+
+class CruiseControlWaitState : public CruiseControlActiveState {
 public:
 	CruiseControlWaitState();
 	virtual ~CruiseControlWaitState();

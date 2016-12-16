@@ -1,14 +1,15 @@
-
-
 #ifndef CRUISECONTROLOFFSTATE_H_
 #define CRUISECONTROLOFFSTATE_H_
 
-class CruiseControlOffState {
+#include "CruiseControlState.h"
+class CruiseControl;
+
+class CruiseControlOffState: public CruiseControlState {
 public:
 	CruiseControlOffState();
 	virtual ~CruiseControlOffState();
     
-    void transitionOn();
+   virtual void transitionOn(CruiseControl* a_cruiseControl);
     
 };
 

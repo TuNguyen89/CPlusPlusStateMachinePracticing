@@ -1,10 +1,8 @@
 
-
 #include "CruiseControlReadyState.h"
 
 CruiseControlReadyState::CruiseControlReadyState() {
-	// TODO Auto-generated constructor stub
-
+   // TODO Auto-generated constructor stub
 }
 
 CruiseControlReadyState::~CruiseControlReadyState() {
@@ -12,5 +10,4 @@ CruiseControlReadyState::~CruiseControlReadyState() {
 }
 
 void CruiseControlReadyState::transitionSet() {
-
 }

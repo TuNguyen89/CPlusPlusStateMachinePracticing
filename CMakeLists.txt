@@ -20,18 +20,22 @@ include_directories("${PROJECT_BINARY_DIR}/include")
 include_directories("${PROJECT_BINARY_DIR}/src")
 
 
+#add directory for submodule
 include_directories("${PROJECT_BINARY_DIR}/src/CruiseControlModule")
+include_directories("${PROJECT_BINARY_DIR}/src/CruiseControlModule/CruiseControlStateMachine")
 add_subdirectory(src/CruiseControlModule)
 
 add_library(CruiseControl
                src/CruiseControlModule/CruiseControl.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlAccState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlActiveState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlOffState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlReadyState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlSetState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlWaitState.cpp)
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlWaitState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlResumeState.cpp
+               )
 
 add_executable(CruiseControl_test
                test/CruiseControl_test.cpp)

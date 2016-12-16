@@ -3,8 +3,8 @@
 #include "CruiseControlSetState.h"
 
 CruiseControlSetState::CruiseControlSetState() {
-	// TODO Auto-generated constructor stub
-
+   // TODO Auto-generated constructor stub
+   //stateName = "Set"; 
 }
 
 CruiseControlSetState::~CruiseControlSetState() {

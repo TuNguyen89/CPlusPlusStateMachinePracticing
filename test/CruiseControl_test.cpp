@@ -104,6 +104,8 @@ int main (int argc, char *argv[])
       cout << item->type << "\t" << item->carSpeed << endl;
    }
 
+   CruiseControl control = CruiseControl();
+
    system("PAUSE");
    return 0;
 }

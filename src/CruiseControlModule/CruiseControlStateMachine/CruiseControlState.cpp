@@ -1,7 +1,6 @@
 
-
 #include "CruiseControlState.h"
-
+#include "CruiseControl.h"
 CruiseControlState::CruiseControlState() {
 	// TODO Auto-generated constructor stub
 
@@ -9,10 +8,6 @@ CruiseControlState::CruiseControlState() {
 
 CruiseControlState::~CruiseControlState() {
 	// TODO Auto-generated destructor stub
-}
-
-void CruiseControlState::transitionOn() {
-
 }
 
 void CruiseControlState::transitionSet() {
