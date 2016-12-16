@@ -1,7 +1,14 @@
+/**
+* @ingroup Cruise Control Module
+* Cruise control module, handle cruise control feature
+*/
+
+
 #include "CruiseControl.h"
 #include "CruiseControlOffState.h"
 
 #include <assert.h>
+#include <sstream>
 
 CruiseControl::CruiseControl() {
     
@@ -60,8 +67,11 @@ void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpe
 }
 
 std::string CruiseControl::getStatus() {
-    std::string speed = std::to_string(cruiseSpeed);
-   return state->getStateName() + "\t" + speed + "\n";
+
+   std::stringstream strStream;
+   strStream << state->getStateName() << "\t" << cruiseSpeed << std::endl;
+   
+   return (strStream.str());
 }
 
 void CruiseControl::actionOn()

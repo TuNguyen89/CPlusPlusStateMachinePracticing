@@ -1,9 +1,33 @@
+/**
+* @ingroup Cruise Control Module
+* Cruise control module, handle cruise control feature
+*/
+
+/*! Cruise Control module
+   The Cruise Control module receive the user input and change it state to active.
+   Be noted that, the minimum speed to active cruise control is 40 Km/h
+   There are number of user input: on, set, resume, brake, accP, accR
+   There are number of state: Off, Ready, Set, Acc, Wait
+
+   Example Usage:
+    @code
+       CruiseControl control = new CruiseControl();
+       control.handleAction(OnAction);
+       control.handleAction(SetAction);
+       control.getStatus();
+    @endcode
+*/
+
 #ifndef CRUISECONTROL_H_
 #define CRUISECONTROL_H_
 
-#include <string>
 #include "CruiseControlState.h"
 
+
+/**
+* Action Enum
+* The avaiable action that cruise control could handle
+*/
 enum ActionEnum 
 {
     SetAction,
@@ -27,16 +51,36 @@ class CruiseControlActiveState;
 class CruiseControl {
 public:
 
+   /**
+   * CruiseControl constructor.
+   * Construct Cruise Control module
+   */
     CruiseControl();
+
+    /**
+    * CruiseControl destructor.
+    * Destruct Cruise Control module
+    */
     virtual ~CruiseControl();
 
+    /**
+    * Hanlde action from outside world
+    * @param action action type
+    * @param a_currentCarSpeed current car speed
+    * @return void
+    */
     void handleAction(ActionEnum action, unsigned int a_currentCarSpeed);
+
+    /**
+    * Hanlde action from outside world
+    * @return current cruise control state and cruise speed
+    */
     std::string getStatus();
 
 private:
 
-    CruiseControlState *state;
-    int cruiseSpeed;
+    CruiseControlState *state; ///Current state of Cruise Control system
+    int cruiseSpeed;           ///Current set speed of Cruise Control system
 
     void actionOn();
     void actionSet(unsigned int a_currentCarSpeed);

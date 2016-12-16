@@ -134,14 +134,13 @@ int main (int argc, char *argv[])
    //Step 1: Parse the input data
    vector<UserInput> inputList = parseInputFile(inputFileName);
 
-   //Step 2: Hanlde each action
+   //Step 2: Handle each action
    CruiseControl control = CruiseControl();
    ofstream output(outputFileName, std::ofstream::out);
 
 
    for (vector<UserInput>::iterator item = inputList.begin(); item != inputList.end(); ++item)
    {
-      //cout << item->type << "\t" << item->carSpeed << endl;
       control.handleAction(convertUserInput(item->type), 
                            item->carSpeed);
 
@@ -149,17 +148,6 @@ int main (int argc, char *argv[])
    }
 
    output.close();
-  /*
-   std::cout << control.getStatus();
-   control.handleAction(OnAction, 0);
-   std::cout << control.getStatus();
-   control.handleAction(SetAction, 45);
-   std::cout << control.getStatus();
-   control.handleAction(BreakAction, 30);
-   std::cout << control.getStatus();
-   control.handleAction(ResumAction, 80);
-   std::cout << control.getStatus();
-   */
 
    system("PAUSE");
    return 0;
