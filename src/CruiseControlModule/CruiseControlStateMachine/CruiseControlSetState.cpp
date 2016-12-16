@@ -1,20 +1,32 @@
 
 
 #include "CruiseControlSetState.h"
+#include "CruiseControl.h"
+#include "CruiseControlAccState.h"
+#include "CruiseControlWaitState.h"
 
-CruiseControlSetState::CruiseControlSetState() {
-   // TODO Auto-generated constructor stub
-   //stateName = "Set"; 
+CruiseControlSetState::CruiseControlSetState() 
+{
+   
+   stateName = "Set"; 
 }
 
-CruiseControlSetState::~CruiseControlSetState() {
+CruiseControlSetState::~CruiseControlSetState() 
+{
 	// TODO Auto-generated destructor stub
 }
 
-void CruiseControlSetState::transitionAccPressed() {
+void CruiseControlSetState::transitionAccPressed(CruiseControl* a_cruiseControl)
+{
 
+   //Action: accP
+   //Transition: Set -> Wait
+   a_cruiseControl->state = new CruiseControlAccState();
 }
 
-void CruiseControlSetState::transitionBrake() {
-
+void CruiseControlSetState::transitionBrake(CruiseControl* a_cruiseControl)
+{
+   //Action: Brake
+   //Transition: Set -> Wait
+   a_cruiseControl->state = new CruiseControlWaitState();
 }

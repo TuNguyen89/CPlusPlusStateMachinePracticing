@@ -1,18 +1,19 @@
 
 #include "CruiseControlOffState.h"
 #include "CruiseControl.h"
+#include "CruiseControlReadyState.h"
 
-CruiseControlOffState::CruiseControlOffState() {
-	// TODO Auto-generated constructor stub
+CruiseControlOffState::CruiseControlOffState() 
+{
    stateName = "Off";
 }
 
 CruiseControlOffState::~CruiseControlOffState() {
-	// TODO Auto-generated destructor stub
+	
 }
 
 void CruiseControlOffState::transitionOn(CruiseControl* a_cruiseControl) {
    
-   //a_cruiseControl->setNewState(new CruiseControlReadyState());
+   a_cruiseControl->state =  new CruiseControlReadyState();
    delete this;
 }

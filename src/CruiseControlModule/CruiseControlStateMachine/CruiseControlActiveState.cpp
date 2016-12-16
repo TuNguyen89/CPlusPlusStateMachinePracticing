@@ -4,17 +4,21 @@
 #include "CruiseControlOffState.h"
 #include "CruiseControl.h"
 
-CruiseControlActiveState::CruiseControlActiveState() {
-	// TODO Auto-generated constructor stub
+CruiseControlActiveState::CruiseControlActiveState()
+{
 
 }
 
-CruiseControlActiveState::~CruiseControlActiveState() {
-	// TODO Auto-generated destructor stub
+CruiseControlActiveState::~CruiseControlActiveState() 
+{
+	
 }
 
-void CruiseControlActiveState::transitionOn(CruiseControl* a_cruiseControl) {
-   
-    a_cruiseControl->setNewState(new CruiseControlOffState());
+void CruiseControlActiveState::transitionOn(CruiseControl* a_cruiseControl) 
+{  
+   //Transition from Active -> Off
+   a_cruiseControl->state = new CruiseControlOffState();
+   //Reset the cruise Speed
+   a_cruiseControl->cruiseSpeed = 0;
    delete this;
 }

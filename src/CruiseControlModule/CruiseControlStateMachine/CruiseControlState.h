@@ -2,14 +2,7 @@
 #define CRUISECONTROLSTATE_H_
 
 #include <string>
-/*
-#include "CruiseControlActiveState.h"
-#include "CruiseControlOffState.h"
-#include "CruiseControlAccState.h"
-#include "CruiseControlReadyState.h"
-#include "CruiseControlSetState.h"
-#include "CruiseControlWaitState.h"
-*/
+
 class CruiseControl;
 
 class CruiseControlState {
@@ -18,13 +11,14 @@ public:
    virtual ~CruiseControlState();
 
    virtual void transitionOn(CruiseControl* cruiseControl) {};
-   void transitionSet();
-   void transitionResume();
-   void transitionBrake();
-   void transitionAccPressed();
-   void transitionAccReleased();
+   virtual void transitionSet(CruiseControl* cruiseControl, unsigned int a_cruiseSpeed) {};
+   virtual void transitionResume(CruiseControl* cruiseControl) {};
+   virtual void transitionBrake(CruiseControl* cruiseControl) {};
+   virtual void transitionAccPressed(CruiseControl* cruiseControl) {};
+   virtual void transitionAccReleased(CruiseControl* cruiseControl) {};
    std::string getStateName() { return stateName; }
-   virtual void setStateName(std::string name) { stateName = name; }
+
+protected:
    std::string stateName;
 };
 

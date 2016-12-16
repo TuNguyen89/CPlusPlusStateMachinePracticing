@@ -10,7 +10,7 @@ class CruiseControlReadyState: public CruiseControlActiveState {
 public:
    CruiseControlReadyState();
    virtual ~CruiseControlReadyState();
-   void transitionSet();
+   virtual void transitionSet(CruiseControl* control, unsigned int a_cruiseSpeed);
 };
 
 #endif /* CRUISECONTROLREADYSTATE_H_ */

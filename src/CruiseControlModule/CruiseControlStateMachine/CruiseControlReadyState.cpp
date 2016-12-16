@@ -1,13 +1,20 @@
 
 #include "CruiseControlReadyState.h"
+#include "CruiseControlSetState.h"
+#include "CruiseControl.h"
 
-CruiseControlReadyState::CruiseControlReadyState() {
-   // TODO Auto-generated constructor stub
+CruiseControlReadyState::CruiseControlReadyState()
+{
+   stateName = "Ready";
 }
 
-CruiseControlReadyState::~CruiseControlReadyState() {
-	// TODO Auto-generated destructor stub
+CruiseControlReadyState::~CruiseControlReadyState() 
+{
+	
 }
 
-void CruiseControlReadyState::transitionSet() {
+void CruiseControlReadyState::transitionSet(CruiseControl* control, unsigned int a_cruiseSpeed)
+{
+   control->state = new CruiseControlSetState();
+   control->cruiseSpeed = a_cruiseSpeed;
 }

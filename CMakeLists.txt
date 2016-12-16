@@ -34,7 +34,6 @@ add_library(CruiseControl
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlReadyState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlSetState.cpp
                src/CruiseControlModule/CruiseControlStateMachine/CruiseControlWaitState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlResumeState.cpp
                )
 
 add_executable(CruiseControl_test

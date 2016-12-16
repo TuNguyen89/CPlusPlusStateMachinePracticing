@@ -17,6 +17,7 @@
 using namespace std;
 
 const string inputFileName = "test/Input.txt";
+const string outputFileName = "test/Output.txt";
 const string inputOn = "on";
 const string inputSet = "set";
 const string inputResume = "resume";
@@ -61,6 +62,38 @@ e_UserInputType getUserInputTypeFromString(string a_inputType)
 }
 
 
+ActionEnum convertUserInput(e_UserInputType a_userInput)
+{
+   switch (a_userInput)
+   {
+      case ON:
+         return OnAction;
+      
+      case SET:
+         return SetAction;
+      
+      case RESUME:
+         return ResumAction;
+      
+      case BRAKE:
+         return BreakAction;
+      
+      case ACCP:
+         return AccPressedAction;
+
+      case ACCR:
+         return AccReleasedAction;
+
+      case INVALID_TYPE:
+      default:
+         std::cout << "ERROR: Invalid input type" << endl;
+         return InvalidAction;
+         break;
+   }
+
+   return InvalidAction;
+}
+
 vector<UserInput> parseInputFile(string fileName)
 {
    ifstream inputFile(fileName);
@@ -89,6 +122,8 @@ vector<UserInput> parseInputFile(string fileName)
       }
    }
 
+   inputFile.close();
+
    return inputList;
 }
 
@@ -99,12 +134,32 @@ int main (int argc, char *argv[])
    //Step 1: Parse the input data
    vector<UserInput> inputList = parseInputFile(inputFileName);
 
+   //Step 2: Hanlde each action
+   CruiseControl control = CruiseControl();
+   ofstream output(outputFileName, std::ofstream::out);
+
+
    for (vector<UserInput>::iterator item = inputList.begin(); item != inputList.end(); ++item)
    {
-      cout << item->type << "\t" << item->carSpeed << endl;
+      //cout << item->type << "\t" << item->carSpeed << endl;
+      control.handleAction(convertUserInput(item->type), 
+                           item->carSpeed);
+
+      output << control.getStatus();
    }
 
-   CruiseControl control = CruiseControl();
+   output.close();
+  /*
+   std::cout << control.getStatus();
+   control.handleAction(OnAction, 0);
+   std::cout << control.getStatus();
+   control.handleAction(SetAction, 45);
+   std::cout << control.getStatus();
+   control.handleAction(BreakAction, 30);
+   std::cout << control.getStatus();
+   control.handleAction(ResumAction, 80);
+   std::cout << control.getStatus();
+   */
 
    system("PAUSE");
    return 0;

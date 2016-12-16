@@ -1,60 +1,98 @@
 #include "CruiseControl.h"
 #include "CruiseControlOffState.h"
 
+#include <assert.h>
+
 CruiseControl::CruiseControl() {
-    state = new CruiseControlOffState();
-    cruiseSpeed = 0;
+    
+   //Default state = OFF and cruise speed = 0
+   state = new CruiseControlOffState();
+   cruiseSpeed = 0;
 }
 
-CruiseControl::~CruiseControl() {
-    // TODO Auto-generated destructor stub
+CruiseControl::~CruiseControl() 
+{
+    
 }
 
-void CruiseControl::handleAction(ActionEnum action) {
+void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpeed)
+{
    
-   //state.nextState(this, action);
    switch (action)
    {
       case OnAction:
+
          actionOn();
          break;
+      
+      case SetAction:
+
+         actionSet(a_currentCarSpeed);
+         break;
+      
+      case BreakAction:
+
+         actionBrake();
+         break;
+
+      case AccPressedAction:
+
+         actionAccPressed();
+         break;
+
+      case AccReleasedAction:
+         
+         actionReleased();
+         break;
+
+      case ResumAction:
+
+         actionResume();
+         break;
+
+      case InvalidAction:
       default:
+         //Debug log: Invalid action
+         assert(false);
          break;
    }
 
 }
 
 std::string CruiseControl::getStatus() {
-    std::string speed = std::to_string((long double)cruiseSpeed);
-   return state->getStateName() + speed;
+    std::string speed = std::to_string(cruiseSpeed);
+   return state->getStateName() + "\t" + speed + "\n";
 }
 
-void CruiseControl::setNewState(CruiseControlState* newState) {
-    state = newState;
-}
-
-
-void CruiseControl::actionOn() {
+void CruiseControl::actionOn()
+{
    state->transitionOn(this);
 }
 
-void CruiseControl::actionSet() {
-
+void CruiseControl::actionSet(unsigned int a_currentCarSpeed)
+{
+   if (a_currentCarSpeed >= MIN_CAR_SPEED_TO_ACTIVE)
+   {
+      state->transitionSet(this, a_currentCarSpeed);
+   }
 }
 
-void CruiseControl::actionResume() {
-
+void CruiseControl::actionBrake()
+{
+   state->transitionBrake(this);
 }
 
-void CruiseControl::actionBrake() {
-
+void CruiseControl::actionAccPressed()
+{
+   state->transitionAccPressed(this);
 }
 
-void CruiseControl::actionAccPressed() {
-
+void CruiseControl::actionReleased()
+{
+   state->transitionAccReleased(this);
 }
 
-void CruiseControl::actionReleased() {
-
+void CruiseControl::actionResume()
+{
+   state->transitionResume(this);
 }
-

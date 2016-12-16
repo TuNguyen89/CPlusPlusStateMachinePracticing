@@ -8,8 +8,8 @@ class CruiseControlSetState : public CruiseControlActiveState {
 public:
 	CruiseControlSetState();
 	virtual ~CruiseControlSetState();
-    void transitionAccPressed();
-    void transitionBrake();
+   virtual void transitionAccPressed(CruiseControl* a_cruiseControl);
+   virtual void transitionBrake(CruiseControl* a_cruiseControl);
 };
 
 #endif /* CRUISECONTROLSETSTATE_H_ */

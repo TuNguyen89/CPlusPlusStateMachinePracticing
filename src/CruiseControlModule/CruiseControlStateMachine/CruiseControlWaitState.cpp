@@ -1,16 +1,34 @@
 
 
 #include "CruiseControlWaitState.h"
+#include "CruiseControl.h"
+#include "CruiseControlSetState.h"
+#include "CruiseControlOffState.h"
 
-CruiseControlWaitState::CruiseControlWaitState() {
-   // TODO Auto-generated constructor stub
+CruiseControlWaitState::CruiseControlWaitState() 
+{
+  
+   stateName = "Wait";
 }
 
-CruiseControlWaitState::~CruiseControlWaitState() {
+CruiseControlWaitState::~CruiseControlWaitState() 
+{
 	// TODO Auto-generated destructor stub
 }
 
 
-void CruiseControlWaitState::transitionResume() {
+void CruiseControlWaitState::transitionResume(CruiseControl* a_cruiseControl)
+{
+   //Action: Resume
+   //Transition: Wait -> Set
+   a_cruiseControl->state = new CruiseControlSetState();
+}
 
+void CruiseControlWaitState::transitionAccReleased(CruiseControl* a_cruiseControl)
+{
+
+   //Action: AccR
+   //Transition: Wait -> OFF
+   a_cruiseControl->state = new CruiseControlOffState();
+   a_cruiseControl->cruiseSpeed = 0;
 }

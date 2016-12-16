@@ -5,4 +5,5 @@ accP 40
 set 45
 accP 45
 accR 50
-resume 40
+brake 45
+resume 45

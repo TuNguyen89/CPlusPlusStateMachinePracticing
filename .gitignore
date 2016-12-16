@@ -51,3 +51,4 @@ CMakeFiles/
 *.cache
 CMakeCache.txt
 cmake_install.cmake
+test/Output.txt

@@ -1,15 +1,17 @@
 
 #include "CruiseControlState.h"
 #include "CruiseControl.h"
-CruiseControlState::CruiseControlState() {
-	// TODO Auto-generated constructor stub
-
+CruiseControlState::CruiseControlState() 
+   : stateName("Abstract State")
+{
+	
 }
 
 CruiseControlState::~CruiseControlState() {
 	// TODO Auto-generated destructor stub
 }
 
+/*
 void CruiseControlState::transitionSet() {
 
 }
@@ -30,3 +32,4 @@ void CruiseControlState::transitionAccReleased() {
 
 }
 
+*/
