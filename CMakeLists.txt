@@ -19,14 +19,22 @@ include_directories("${PROJECT_BINARY_DIR}/test")
 include_directories("${PROJECT_BINARY_DIR}/include")
 include_directories("${PROJECT_BINARY_DIR}/src")
 
-add_executable(CruiseControl
-               src/CruiseControl.cpp
-               src/CruiseControlAccState.cpp
-               src/CruiseControlActiveState.cpp
-               src/CruiseControlOffState.cpp
-               src/CruiseControlReadyState.cpp
-               src/CruiseControlSetState.cpp
-               src/CruiseControlState.cpp
-               src/CruiseControlWaitState.cpp
-               src/Vehicle.cpp
+
+include_directories("${PROJECT_BINARY_DIR}/src/CruiseControlModule")
+add_subdirectory(src/CruiseControlModule)
+
+add_library(CruiseControl
+               src/CruiseControlModule/CruiseControl.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlAccState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlActiveState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlOffState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlReadyState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlSetState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlState.cpp
+               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlWaitState.cpp)
+
+add_executable(CruiseControl_test
                test/CruiseControl_test.cpp)
+              
+target_link_libraries(CruiseControl_test CruiseControl)
+

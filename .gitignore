@@ -45,3 +45,9 @@ CMakeFiles/
 *.vcxproj
 *.filters
 *.sln
+*.tlog
+*.pdb
+*.user
+*.cache
+CMakeCache.txt
+cmake_install.cmake
