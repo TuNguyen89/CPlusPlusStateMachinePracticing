@@ -11,13 +11,15 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <streambuf>
+#include <iterator>
 
 
 
 using namespace std;
 
-const string inputFileName = "test/Input.txt";
-const string outputFileName = "test/Output.txt";
+const string inputFileName = "test/resource/Input.txt";
+const string outputFileName = "test/resource/Output.txt";
 const string inputOn = "on";
 const string inputSet = "set";
 const string inputResume = "resume";
@@ -128,11 +130,46 @@ vector<UserInput> parseInputFile(string fileName)
 }
 
 
+bool equal_files(const std::string& a, const std::string& b)
+{
+   bool ret = true;
+   ifstream file1(a);
+   ifstream file2(b);
+   while ((!file1.eof()) && (!file2.eof()))
+   {
+      string line1,line2;
+      getline(file1,line1);
+      getline(file2,line2);
+      if (line1 != line2) {
+         ret = false;
+      }
+   }
+
+   file1.close();
+   file2.close();
+   
+   return ret;
+}
 
 int main (int argc, char *argv[])
 {
+
+   std::string inputFile = inputFileName;
+   if (argc < 3) {
+      cout << "ERROR: the number of argument is not correct, "
+           << "please pass the file name of input.text and output.txt" << endl;
+
+      cout << "Usage: " << argv[0] << " inputPath" << " expectedOutputPath " << endl;
+      
+      system("PAUSE");
+      return 0;
+   }
+
+   inputFile = argv[1];
+   std::string expectedOutputFile = argv[2];
+
    //Step 1: Parse the input data
-   vector<UserInput> inputList = parseInputFile(inputFileName);
+   vector<UserInput> inputList = parseInputFile(inputFile);
 
    //Step 2: Handle each action
    CruiseControl control = CruiseControl();
@@ -148,6 +185,12 @@ int main (int argc, char *argv[])
    }
 
    output.close();
+   
+   if(equal_files(outputFileName, expectedOutputFile)) {
+      cout << "True" << endl;
+   } else {
+      cout << "False" << endl;
+   }
 
    system("PAUSE");
    return 0;

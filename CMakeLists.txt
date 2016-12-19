@@ -1,7 +1,7 @@
 
 project(CruiseControl)
 cmake_minimum_required (VERSION 2.6)
-
+include(CTest)
 #set the version
 set (CruiseControl_VERSION_MAJOR 0)
 set (CruiseControl_VERSION_MINOR 1)
@@ -19,21 +19,23 @@ include_directories("${PROJECT_BINARY_DIR}/test")
 include_directories("${PROJECT_BINARY_DIR}/include")
 include_directories("${PROJECT_BINARY_DIR}/src")
 
+set (SRC_CRUISECONTROL_DIR "src/CruiseControlModule")
+set (SRC_CRUISECONTROL_STATEMACHINE_DIR "${SRC_CRUISECONTROL_DIR}/CruiseControlStateMachine")
 
 #add directory for submodule
-include_directories("${PROJECT_BINARY_DIR}/src/CruiseControlModule")
-include_directories("${PROJECT_BINARY_DIR}/src/CruiseControlModule/CruiseControlStateMachine")
-add_subdirectory(src/CruiseControlModule)
+include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_DIR}")
+include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_STATEMACHINE_DIR}")
+add_subdirectory(${SRC_CRUISECONTROL_DIR})
 
 add_library(CruiseControl
-               src/CruiseControlModule/CruiseControl.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlAccState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlActiveState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlOffState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlReadyState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlSetState.cpp
-               src/CruiseControlModule/CruiseControlStateMachine/CruiseControlWaitState.cpp
+               ${SRC_CRUISECONTROL_DIR}/CruiseControl.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlAccState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlActiveState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlOffState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlReadyState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlSetState.cpp
+               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlWaitState.cpp
                )
 
 add_executable(CruiseControl_test
@@ -41,3 +43,14 @@ add_executable(CruiseControl_test
               
 target_link_libraries(CruiseControl_test CruiseControl)
 
+#define a macro to simplify adding tests
+macro (do_test arg1 arg2 arg3 result)
+  add_test (CruiseControl_test${arg1} CruiseControl_test ${arg2} ${arg3})
+  set_tests_properties (CruiseControl_test${arg1}
+    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+    )
+endmacro (do_test)
+
+set (TEST_RESOURCE_DIR "test/resource")
+do_test (1 "${TEST_RESOURCE_DIR}/test1/Input1.txt" "${TEST_RESOURCE_DIR}/test1/ExpectedOutput1.txt" "True")
+do_test (2 "${TEST_RESOURCE_DIR}/test2/Input2.txt" "${TEST_RESOURCE_DIR}/test2/ExpectedOutput2.txt" "True")

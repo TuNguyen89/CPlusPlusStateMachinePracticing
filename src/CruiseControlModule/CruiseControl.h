@@ -82,13 +82,6 @@ private:
     CruiseControlState *state; ///Current state of Cruise Control system
     int cruiseSpeed;           ///Current set speed of Cruise Control system
 
-    void actionOn();
-    void actionSet(unsigned int a_currentCarSpeed);
-    void actionResume();
-    void actionBrake();
-    void actionAccPressed();
-    void actionReleased();
-
     //Friend class delcelation
     friend class CruiseControlOffState;
     friend class CruiseControlReadyState;

@@ -19,42 +19,40 @@ CruiseControl::CruiseControl() {
 
 CruiseControl::~CruiseControl() 
 {
-    
+   delete state;
 }
 
 void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpeed)
 {
-   
    switch (action)
    {
       case OnAction:
 
-         actionOn();
+         state->transitionOn(this);
          break;
       
       case SetAction:
-
-         actionSet(a_currentCarSpeed);
+         state->transitionSet(this, a_currentCarSpeed);
          break;
       
       case BreakAction:
 
-         actionBrake();
+         state->transitionBrake(this);
          break;
 
       case AccPressedAction:
 
-         actionAccPressed();
+         state->transitionAccPressed(this);
          break;
 
       case AccReleasedAction:
          
-         actionReleased();
+         state->transitionAccReleased(this);
          break;
 
       case ResumAction:
 
-         actionResume();
+         state->transitionResume(this);
          break;
 
       case InvalidAction:
@@ -63,7 +61,6 @@ void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpe
          assert(false);
          break;
    }
-
 }
 
 std::string CruiseControl::getStatus() {
@@ -72,37 +69,4 @@ std::string CruiseControl::getStatus() {
    strStream << state->getStateName() << "\t" << cruiseSpeed << std::endl;
    
    return (strStream.str());
-}
-
-void CruiseControl::actionOn()
-{
-   state->transitionOn(this);
-}
-
-void CruiseControl::actionSet(unsigned int a_currentCarSpeed)
-{
-   if (a_currentCarSpeed >= MIN_CAR_SPEED_TO_ACTIVE)
-   {
-      state->transitionSet(this, a_currentCarSpeed);
-   }
-}
-
-void CruiseControl::actionBrake()
-{
-   state->transitionBrake(this);
-}
-
-void CruiseControl::actionAccPressed()
-{
-   state->transitionAccPressed(this);
-}
-
-void CruiseControl::actionReleased()
-{
-   state->transitionAccReleased(this);
-}
-
-void CruiseControl::actionResume()
-{
-   state->transitionResume(this);
 }

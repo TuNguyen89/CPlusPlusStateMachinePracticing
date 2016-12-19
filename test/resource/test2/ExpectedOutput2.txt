@@ -1,0 +1,6 @@
+Off	0
+Off	0
+Ready	0
+Ready	0
+Set	45
+Acc	45
