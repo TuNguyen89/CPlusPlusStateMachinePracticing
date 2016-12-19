@@ -19,4 +19,5 @@ void CruiseControlAccState::transitionAccReleased(CruiseControl* a_cruiseControl
    //Action: accR
    //Transition: Acc -> Set
    a_cruiseControl->state = new CruiseControlSetState();
+   delete this;
 }

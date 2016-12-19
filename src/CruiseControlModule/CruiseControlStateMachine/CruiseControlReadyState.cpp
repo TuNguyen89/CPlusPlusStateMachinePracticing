@@ -17,4 +17,5 @@ void CruiseControlReadyState::transitionSet(CruiseControl* control, unsigned int
 {
    control->state = new CruiseControlSetState();
    control->cruiseSpeed = a_cruiseSpeed;
+   delete this;
 }

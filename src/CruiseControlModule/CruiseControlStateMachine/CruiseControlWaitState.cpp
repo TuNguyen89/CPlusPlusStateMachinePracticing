@@ -22,6 +22,7 @@ void CruiseControlWaitState::transitionResume(CruiseControl* a_cruiseControl)
    //Action: Resume
    //Transition: Wait -> Set
    a_cruiseControl->state = new CruiseControlSetState();
+   delete this;
 }
 
 void CruiseControlWaitState::transitionAccReleased(CruiseControl* a_cruiseControl)
@@ -31,4 +32,5 @@ void CruiseControlWaitState::transitionAccReleased(CruiseControl* a_cruiseContro
    //Transition: Wait -> OFF
    a_cruiseControl->state = new CruiseControlOffState();
    a_cruiseControl->cruiseSpeed = 0;
+   delete this;
 }

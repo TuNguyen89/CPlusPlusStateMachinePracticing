@@ -22,6 +22,7 @@ void CruiseControlSetState::transitionAccPressed(CruiseControl* a_cruiseControl)
    //Action: accP
    //Transition: Set -> Wait
    a_cruiseControl->state = new CruiseControlAccState();
+   delete this;
 }
 
 void CruiseControlSetState::transitionBrake(CruiseControl* a_cruiseControl)
@@ -29,4 +30,5 @@ void CruiseControlSetState::transitionBrake(CruiseControl* a_cruiseControl)
    //Action: Brake
    //Transition: Set -> Wait
    a_cruiseControl->state = new CruiseControlWaitState();
+   delete this;
 }
