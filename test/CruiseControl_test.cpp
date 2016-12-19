@@ -173,14 +173,16 @@ int main (int argc, char *argv[])
 
    //Step 2: Handle each action
    CruiseControl control = CruiseControl();
-   ofstream output(outputFileName, std::ofstream::out);
+   //Open and clean the ouput file
+   ofstream output(outputFileName, std::ofstream::out, std::ofstream::trunc);
 
-
+   // FOR each action in the list
    for (vector<UserInput>::iterator item = inputList.begin(); item != inputList.end(); ++item)
    {
       control.handleAction(convertUserInput(item->type), 
                            item->carSpeed);
 
+      //Get the status and put into output file
       output << control.getStatus();
    }
 
