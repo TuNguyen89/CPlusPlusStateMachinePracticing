@@ -22,26 +22,38 @@ include_directories("${PROJECT_BINARY_DIR}/src")
 set (SRC_CRUISECONTROL_DIR "src/CruiseControlModule")
 set (SRC_CRUISECONTROL_STATEMACHINE_DIR "${SRC_CRUISECONTROL_DIR}/CruiseControlStateMachine")
 
-#add directory for submodule
+set (SRC_ADAPTIVECRUISECONTROL_DIR "src/AdaptiveCruiseControlModule")
+set (SRC_ADAPTIVECRUISECONTROL_STATEMACHINE_DIR "${SRC_ADAPTIVECRUISECONTROL_DIR}/AdaptiveCruiseControlStateMachine")
+
+#Cruise Control module
 include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_DIR}")
 include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_STATEMACHINE_DIR}")
+
+#ACC module
+include_directories("${PROJECT_BINARY_DIR}/${SRC_ADAPTIVECRUISECONTROL_DIR}")
+include_directories("${PROJECT_BINARY_DIR}/${SRC_ADAPTIVECRUISECONTROL_STATEMACHINE_DIR}")
+
 add_subdirectory(${SRC_CRUISECONTROL_DIR})
+add_subdirectory(${SRC_ADAPTIVECRUISECONTROL_DIR})
 
-add_library(CruiseControl
-               ${SRC_CRUISECONTROL_DIR}/CruiseControl.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlAccState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlActiveState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlOffState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlReadyState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlSetState.cpp
-               ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/CruiseControlWaitState.cpp
-               )
+file(GLOB_RECURSE CruiseControlSourceFiles
+                  ${SRC_CRUISECONTROL_DIR}/*.cpp
+                  ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/*.cpp
+                  )
+add_library(CruiseControl ${CruiseControlSourceFiles})
 
+#Adaptive Cruise Control library
+file(GLOB_RECURSE AdaptiveCruiseControlSourceFiles
+                  ${SRC_ADAPTIVECRUISECONTROL_DIR}/*.cpp
+                  ${SRC_ADAPTIVECRUISECONTROL_STATEMACHINE_DIR}/*.cpp
+                  )
+               
+add_library(AdaptiveCruiseControl ${AdaptiveCruiseControlSourceFiles})
+               
 add_executable(CruiseControl_test
                test/CruiseControl_test.cpp)
               
-target_link_libraries(CruiseControl_test CruiseControl)
+target_link_libraries(CruiseControl_test CruiseControl AdaptiveCruiseControl)
 
 #define a macro to simplify adding tests
 macro (do_test arg1 arg2 arg3 result)
