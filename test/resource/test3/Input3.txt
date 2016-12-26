@@ -1,0 +1,8 @@
+on 100
+on 100
+on 100
+detect 100
+nodetect 100
+gas 100
+resume 100
+on 100

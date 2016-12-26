@@ -9,6 +9,10 @@ typedef enum UserInputType {
    BRAKE,
    ACCP,
    ACCR,
+   CAN,
+   GAS,
+   DETECT,
+   NODETECT,
    INVALID_TYPE
 } e_UserInputType;
 
