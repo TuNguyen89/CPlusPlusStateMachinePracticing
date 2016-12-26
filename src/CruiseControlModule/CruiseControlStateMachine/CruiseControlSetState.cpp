@@ -29,7 +29,7 @@ CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transition
 {
    //Action: Brake
    //Transition: Set -> Wait
-   return &(aMachine->mWait);
+   return &(aMachine->mWaitState);
 }
 
 CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionSet(CruiseControlStateMachine * aMachine, EventDataType arg)

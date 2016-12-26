@@ -20,7 +20,7 @@ public:
    CruiseControlOffState mOffState;
    CruiseControlReadyState mReadyState;
    CruiseControlSetState mSetState;
-   CruiseControlWaitState mWait;
+   CruiseControlWaitState mWaitState;
 
    void run(Event aReceivedEvent, EventDataType aInputData);
 

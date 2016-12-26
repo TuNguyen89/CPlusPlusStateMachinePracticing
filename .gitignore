@@ -59,3 +59,4 @@ test/resource/Output.txt
 *.cmake
 test/resource/Input.txt
 DartConfiguration.tcl
+Testing/Temporary/CTestCostData.txt
