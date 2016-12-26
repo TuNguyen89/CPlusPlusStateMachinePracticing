@@ -74,3 +74,5 @@ do_test ("CruiseControl_test" 2 "${TEST_RESOURCE_DIR}/test2/Input2.txt" "${TEST_
 
 #define test for Adaptive Cruise Control
 do_test ("AdaptiveCruiseControl_test" 1 "${TEST_RESOURCE_DIR}/test3/Input3.txt" "${TEST_RESOURCE_DIR}/test3/ExpectedOutput3.txt" "True")
+
+do_test ("AdaptiveCruiseControl_test" 2 "${TEST_RESOURCE_DIR}/test4/Input4.txt" "${TEST_RESOURCE_DIR}/test4/ExpectedOutput4.txt" "True")

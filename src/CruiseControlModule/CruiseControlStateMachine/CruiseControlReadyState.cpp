@@ -22,6 +22,7 @@ CruiseControlState<CruiseControlStateMachine>* CruiseControlReadyState::transiti
    }
    else
    {
+      aMachine->setCruiseSpeed(aVehicelSpeed);
       return &(aMachine->mSetState);
    }
    

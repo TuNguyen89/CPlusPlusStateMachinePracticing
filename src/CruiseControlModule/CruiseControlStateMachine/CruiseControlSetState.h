@@ -9,9 +9,10 @@ public:
 	CruiseControlSetState();
 	virtual ~CruiseControlSetState();
 
-   CruiseControlState<CruiseControlStateMachine>* transitionAccPressed(CruiseControlStateMachine * aMachine, EventDataType arg);
-   CruiseControlState<CruiseControlStateMachine>* transitionBrake(CruiseControlStateMachine * aMachine, EventDataType arg);
-   CruiseControlState<CruiseControlStateMachine>* transitionSet(CruiseControlStateMachine * aMachine, EventDataType arg);
+   CruiseControlState<CruiseControlStateMachine>* transitionAccPressed(CruiseControlStateMachine * aMachine, EventDataType eventData);
+   CruiseControlState<CruiseControlStateMachine>* transitionBrake(CruiseControlStateMachine * aMachine, EventDataType eventData);
+   CruiseControlState<CruiseControlStateMachine>* transitionSet(CruiseControlStateMachine * aMachine, EventDataType eventData);
+   
 };
 
 #endif /* CRUISECONTROLSETSTATE_H_ */

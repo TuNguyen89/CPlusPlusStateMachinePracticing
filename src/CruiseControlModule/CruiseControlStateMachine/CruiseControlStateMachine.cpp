@@ -1,6 +1,7 @@
 #include "CruiseControlStateMachine.h"
 
 CruiseControlStateMachine::CruiseControlStateMachine()
+         : cruiseSpeed(0)
 {
    //Default state is OFF
    transition(&mOffState);
@@ -10,7 +11,7 @@ CruiseControlStateMachine::~CruiseControlStateMachine()
 {
 }
 
-void CruiseControlStateMachine::run(Event aReceivedEvent, unsigned int aInputData)
+void CruiseControlStateMachine::run(Event aReceivedEvent, EventDataType aInputData)
 {
    if(aReceivedEvent)
    {
@@ -18,7 +19,7 @@ void CruiseControlStateMachine::run(Event aReceivedEvent, unsigned int aInputDat
    }
 }
 
-std::string CruiseControlStateMachine::getCurrentStateName()
+std::string CruiseControlStateMachine::getCurrentStateName() const
 {
    const CruiseControlState<CruiseControlStateMachine>* const state = getCurrentState();
    return state->getStateName();

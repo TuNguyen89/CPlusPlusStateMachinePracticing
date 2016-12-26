@@ -11,8 +11,6 @@
 
 CruiseControl::CruiseControl()
 {
-   cruiseSpeed = 0;
-   mStateMachine.transition(&(mStateMachine.mOffState));
 }
 
 CruiseControl::~CruiseControl() 
@@ -20,7 +18,7 @@ CruiseControl::~CruiseControl()
    //delete state;
 }
 
-void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpeed)
+void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSpeed)
 {
 
    CruiseControlStateMachine::Event eventToHandle = 0;
@@ -63,7 +61,7 @@ void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpe
 std::string CruiseControl::getStatus() {
 
    std::stringstream strStream;
-   strStream << mStateMachine.getCurrentStateName() << "\t" << cruiseSpeed << std::endl;
+   strStream << mStateMachine.getCurrentStateName() << "\t" << mStateMachine.getCruiseSpeed() << std::endl;
    
    return (strStream.str());
 }

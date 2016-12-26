@@ -26,6 +26,7 @@ public:
    virtual CruiseControlState<FSM>*  transitionAccPressed(FSM*, EventDataType) { return this; }
    virtual CruiseControlState<FSM>*  transitionAccReleased(FSM*, EventDataType) { return this; }
 
+
 protected:
    std::string stateName;
 };

@@ -22,13 +22,23 @@ public:
    CruiseControlSetState mSetState;
    CruiseControlWaitState mWait;
 
-   void run(Event aReceivedEvent, unsigned int aInputData);
+   void run(Event aReceivedEvent, EventDataType aInputData);
 
-   std::string getCurrentStateName();
+   std::string getCurrentStateName() const;
+
+   unsigned int getCruiseSpeed() const
+   {
+      return cruiseSpeed; 
+   } 
+   void setCruiseSpeed(unsigned int aCruiseSpeed)
+   {
+      cruiseSpeed = aCruiseSpeed;
+   }
 
 private:
 
    CruiseControlStateMachine(const CruiseControlStateMachine& aCopy);
+   unsigned int cruiseSpeed;
 
 };
 

@@ -1,8 +1,0 @@
-Off	0
-Off	0
-Ready	0
-Ready	0
-Set	0
-Acc	0
-Set	0
-Set	0

@@ -12,28 +12,43 @@ public:
     //instead rely on on_enter/on_exit
     typedef typename STATE* (STATE::*Event)(DERIVED_FSM*, EventDataType);
     
-    STATE* dispatch(Event e, EventDataType arg){
-        if(curr_state && e){
-            STATE* next_state=(curr_state->*e)(that(), arg);
-            if(next_state!=curr_state) transition(next_state);
+    STATE* dispatch(Event e, EventDataType eventData)
+    {
+        if(curr_state && e)
+        {
+            STATE* next_state=(curr_state->*e)(that(), eventData);
+            if (next_state != curr_state)
+            {
+               transition(next_state);
+            }
         }
         return curr_state;
-    }
-
-    void transition(STATE* next_state){
-        if(curr_state==next_state) return;
-  
-        if(curr_state) curr_state->onExit(that(),next_state); 
-        if(next_state) next_state->onEnter(that(),curr_state);
-
-        curr_state=next_state;
     }
 
 protected:
     FSM_TStateMachine():curr_state(0){}
     virtual ~FSM_TStateMachine(){}
 
-    const STATE* const getCurrentState()
+    void transition(STATE* next_state)
+    {
+       if (curr_state == next_state)
+       {
+          return;
+       }
+
+       if (curr_state)
+       {
+          curr_state->onExit(that(), next_state);
+       }
+       if (next_state)
+       {
+          next_state->onEnter(that(), curr_state);
+       }
+
+       curr_state = next_state;
+    }
+
+    const STATE* const getCurrentState() const
     {
        return curr_state;
     }

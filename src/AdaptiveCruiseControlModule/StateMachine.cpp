@@ -96,12 +96,12 @@ void StateMachine::StateEngine(const StateMapRow* const pStateMap)
 		// Event used up, reset the flag
 		m_eventGenerated = FALSE;
 
-		// Switch to the new current state
-		SetCurrentState(m_newState);
-
 		// Execute the state action passing in event data
 		ASSERT_TRUE(state != NULL);
 		state->InvokeStateAction(this, pDataTemp);
+
+      // Switch to the new current state
+      SetCurrentState(m_newState);
 
 		// If event data was used, then delete it
 		if (pDataTemp)
@@ -162,13 +162,12 @@ void StateMachine::StateEngine(const StateMapRowEx* const pStateMapEx)
 				// Ensure exit/entry actions didn't call InternalEvent by accident 
 				ASSERT_TRUE(m_eventGenerated == FALSE);
 			}
+         // Execute the state action passing in event data
+         ASSERT_TRUE(state != NULL);
+         state->InvokeStateAction(this, pDataTemp);
 
 			// Switch to the new current state
 			SetCurrentState(m_newState);
-
-			// Execute the state action passing in event data
-			ASSERT_TRUE(state != NULL);
-			state->InvokeStateAction(this, pDataTemp);
 		}
 
 		// If event data was used, then delete it

@@ -127,7 +127,10 @@ STATE_DEFINE(AdaptiveCruiseControl, StandbyState, MotorData)
 STATE_DEFINE(AdaptiveCruiseControl, SpeedState, MotorData)
 {
 	cout << "Current State is SpeedState"<< endl;
-   m_currentSpeed = data->speed;
+   if (GetCurrentState() == E_STATE_OFF)
+   {
+      m_currentSpeed = data->speed;
+   }
 }
 
 STATE_DEFINE(AdaptiveCruiseControl, GapState, MotorData)

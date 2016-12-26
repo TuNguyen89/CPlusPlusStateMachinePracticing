@@ -69,7 +69,7 @@ public:
     * @param a_currentCarSpeed current car speed
     * @return void
     */
-    void handleAction(ActionEnum action, unsigned int a_currentCarSpeed);
+    void handleAction(ActionEnum action, EventDataType a_currentCarSpeed);
 
     /**
     * Hanlde action from outside world
@@ -78,9 +78,6 @@ public:
     std::string getStatus();
 
 private:
-
-    //CruiseControlState *state; ///Current state of Cruise Control system
-    int cruiseSpeed;           ///Current set speed of Cruise Control system
 
     // State machine
     CruiseControlStateMachine mStateMachine;

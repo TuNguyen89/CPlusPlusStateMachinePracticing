@@ -35,5 +35,9 @@ CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transition
 CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionSet(CruiseControlStateMachine * aMachine, EventDataType arg)
 {
    //TODO: Check the current speed and set the new one if appropriate
+   if (arg >= MIN_CAR_SPEED_TO_ACTIVE)
+   {
+      aMachine->setCruiseSpeed(arg);
+   }
    return this;
 }

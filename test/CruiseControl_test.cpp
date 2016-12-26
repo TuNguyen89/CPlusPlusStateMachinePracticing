@@ -13,18 +13,18 @@ int main (int argc, char *argv[])
 {
 
    std::string inputFile = inputFileName;
-   //if (argc < 3) {
-   //   cout << "ERROR: the number of argument is not correct, "
-   //        << "please pass the file name of input.text and output.txt" << endl;
+   if (argc < 3) {
+      cout << "ERROR: the number of argument is not correct, "
+           << "please pass the file name of input.text and output.txt" << endl;
 
-   //   cout << "Usage: " << argv[0] << " inputPath" << " expectedOutputPath " << endl;
-   //   
-   //   system("PAUSE");
-   //   return 0;
-   //}
+      cout << "Usage: " << argv[0] << " inputPath" << " expectedOutputPath " << endl;
+      
+      system("PAUSE");
+      return 0;
+   }
 
-   //inputFile = argv[1];
-   //std::string expectedOutputFile = argv[2];
+   inputFile = argv[1];
+   std::string expectedOutputFile = argv[2];
 
    //Step 1: Parse the input data
    vector<UserInput> inputList = parseInputFile(inputFile);
@@ -46,11 +46,11 @@ int main (int argc, char *argv[])
 
    output.close();
    
-   //if(equal_files(outputFileName, expectedOutputFile)) {
-   //   cout << "True" << endl;
-   //} else {
-   //   cout << "False" << endl;
-   //}
+   if(equal_files(outputFileName, expectedOutputFile)) {
+      cout << "True" << endl;
+   } else {
+      cout << "False" << endl;
+   }
 
 
    system("PAUSE");
