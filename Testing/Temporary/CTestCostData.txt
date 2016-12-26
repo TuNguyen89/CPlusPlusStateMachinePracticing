@@ -1,3 +1,0 @@
-CruiseControl_test1 9 0.101222
-CruiseControl_test2 3 0.238333
----

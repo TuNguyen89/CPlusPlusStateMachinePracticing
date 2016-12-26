@@ -24,31 +24,31 @@ void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSp
    CruiseControlStateMachine::Event eventToHandle = 0;
    switch (action)
    {
-      case OnAction:
+      case E_ACTION_ON:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionOn;
          break;
       
-      case SetAction:
+      case E_ACTION_SET:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionSet;
          break;
       
-      case BreakAction:
+      case E_ACTION_BRAKE:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionBrake;
          break;
 
-      case AccPressedAction:
+      case E_ACTION_ACC_PRESSED:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionAccPressed;
          break;
 
-      case AccReleasedAction:
+      case E_ACTION_ACC_RELEASED:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionAccReleased;
          break;
 
-      case ResumAction:
+      case E_ACTION_RESUME:
          eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionResume;
          break;
 
-      case InvalidAction:
+      case E_ACTION_INVALID:
       default:
          //Debug log: Invalid action
          assert(false);
@@ -58,7 +58,8 @@ void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSp
    mStateMachine.run(eventToHandle, a_currentCarSpeed);
 }
 
-std::string CruiseControl::getStatus() {
+std::string CruiseControl::getStatus() 
+{
 
    std::stringstream strStream;
    strStream << mStateMachine.getCurrentStateName() << "\t" << mStateMachine.getCruiseSpeed() << std::endl;

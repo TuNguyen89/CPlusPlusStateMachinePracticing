@@ -30,13 +30,13 @@
 */
 enum ActionEnum 
 {
-    SetAction,
-    OnAction,
-    ResumAction,
-    BreakAction,
-    AccPressedAction,
-    AccReleasedAction,
-    InvalidAction
+    E_ACTION_SET,
+    E_ACTION_ON,
+    E_ACTION_RESUME,
+    E_ACTION_BRAKE,
+    E_ACTION_ACC_PRESSED,
+    E_ACTION_ACC_RELEASED,
+    E_ACTION_INVALID
 };
 
 const unsigned int MIN_CAR_SPEED_TO_ACTIVE = 40; //Minimum car speed to active is 40

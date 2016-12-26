@@ -84,31 +84,31 @@ ActionEnum convertUserInput(e_UserInputType a_userInput)
    switch (a_userInput)
    {
       case ON:
-         return OnAction;
+         return E_ACTION_ON;
       
       case SET:
-         return SetAction;
+         return E_ACTION_SET;
       
       case RESUME:
-         return ResumAction;
+         return E_ACTION_RESUME;
       
       case BRAKE:
-         return BreakAction;
+         return E_ACTION_BRAKE;
       
       case ACCP:
-         return AccPressedAction;
+         return E_ACTION_ACC_PRESSED;
 
       case ACCR:
-         return AccReleasedAction;
+         return E_ACTION_ACC_RELEASED;
 
       case INVALID_TYPE:
       default:
          std::cout << "ERROR: Invalid input type" << endl;
-         return InvalidAction;
+         return E_ACTION_INVALID;
          break;
    }
 
-   return InvalidAction;
+   return E_ACTION_INVALID;
 }
 
 AccActionEnum convertAccUserInput(e_UserInputType a_userInput)
