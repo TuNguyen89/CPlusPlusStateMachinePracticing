@@ -10,8 +10,9 @@ class CruiseControlWaitState : public CruiseControlActiveState {
 public:
 	CruiseControlWaitState();
 	virtual ~CruiseControlWaitState();
-   virtual void transitionResume(CruiseControl* a_cruiseControl);
-   virtual void transitionAccReleased(CruiseControl* a_cruiseControl);
+
+   CruiseControlState<CruiseControlStateMachine>* transitionResume(CruiseControlStateMachine * aMachine, 
+                                                                   const MyNameSpace::f_any & arg);
 };
 
 #endif /* CRUISECONTROLWAITSTATE_H_ */

@@ -8,7 +8,9 @@ class CruiseControlAccState : public CruiseControlActiveState {
 public:
 	CruiseControlAccState();
 	virtual ~CruiseControlAccState();
-   virtual void transitionAccReleased(CruiseControl* a_cruiseControl);
+
+   CruiseControlState<CruiseControlStateMachine>* transitionAccReleased(CruiseControlStateMachine * aMachine,
+                                                                        const MyNameSpace::f_any & arg);
 };
 
 #endif /* CRUISECONTROLACCSTATE_H_ */

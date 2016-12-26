@@ -8,8 +8,10 @@ class CruiseControlSetState : public CruiseControlActiveState {
 public:
 	CruiseControlSetState();
 	virtual ~CruiseControlSetState();
-   virtual void transitionAccPressed(CruiseControl* a_cruiseControl);
-   virtual void transitionBrake(CruiseControl* a_cruiseControl);
+
+   CruiseControlState<CruiseControlStateMachine>* transitionAccPressed(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg);
+   CruiseControlState<CruiseControlStateMachine>* transitionBrake(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg);
+   CruiseControlState<CruiseControlStateMachine>* transitionSet(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg);
 };
 
 #endif /* CRUISECONTROLSETSTATE_H_ */

@@ -14,11 +14,17 @@ CruiseControlActiveState::~CruiseControlActiveState()
 	
 }
 
-void CruiseControlActiveState::transitionOn(CruiseControl* a_cruiseControl) 
-{  
+CruiseControlState<CruiseControlStateMachine>* CruiseControlActiveState::transitionOn(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any &)
+{
+   //TODO
    //Transition from Active -> Off
-   a_cruiseControl->state = new CruiseControlOffState();
    //Reset the cruise Speed
-   a_cruiseControl->cruiseSpeed = 0;
-   delete this;
+   return &(aMachine->mOffState);
 }
+
+//void CruiseControlActiveState::transitionOn(CruiseControl* a_cruiseControl) 
+//{  
+   //Transition from Active -> Off
+   //Reset the cruise Speed
+
+//}

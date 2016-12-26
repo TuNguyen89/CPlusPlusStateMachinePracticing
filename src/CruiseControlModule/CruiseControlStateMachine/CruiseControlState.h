@@ -2,21 +2,30 @@
 #define CRUISECONTROLSTATE_H_
 
 #include <string>
+#include "FSM_TBaseState.h"
 
-class CruiseControl;
+namespace MyNameSpace { struct f_any; }
 
-class CruiseControlState {
+template<class FSM>
+class CruiseControlState : public FSM_TIBaseState <FSM, CruiseControlState<FSM>>
+{
 public:
-   CruiseControlState();
-   virtual ~CruiseControlState();
+   CruiseControlState() {} ;
+   virtual ~CruiseControlState() {} ;
 
-   virtual void transitionOn(CruiseControl* cruiseControl) {};
-   virtual void transitionSet(CruiseControl* cruiseControl, unsigned int a_cruiseSpeed) {};
-   virtual void transitionResume(CruiseControl* cruiseControl) {};
-   virtual void transitionBrake(CruiseControl* cruiseControl) {};
-   virtual void transitionAccPressed(CruiseControl* cruiseControl) {};
-   virtual void transitionAccReleased(CruiseControl* cruiseControl) {};
-   std::string getStateName() { return stateName; }
+   const std::string getStateName() const
+   {
+      return stateName; 
+   }
+
+
+   //New design
+   virtual CruiseControlState<FSM>*  transitionOn(FSM*, const MyNameSpace::f_any&) { return this; }
+   virtual CruiseControlState<FSM>*  transitionSet(FSM*, const MyNameSpace::f_any&) { return this; }
+   virtual CruiseControlState<FSM>*  transitionResume(FSM*, const MyNameSpace::f_any&) { return this; }
+   virtual CruiseControlState<FSM>*  transitionBrake(FSM*, const MyNameSpace::f_any&) { return this; }
+   virtual CruiseControlState<FSM>*  transitionAccPressed(FSM*, const MyNameSpace::f_any&) { return this; }
+   virtual CruiseControlState<FSM>*  transitionAccReleased(FSM*, const MyNameSpace::f_any&) { return this; }
 
 protected:
    std::string stateName;

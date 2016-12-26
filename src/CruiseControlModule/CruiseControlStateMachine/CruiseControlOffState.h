@@ -2,15 +2,19 @@
 #define CRUISECONTROLOFFSTATE_H_
 
 #include "CruiseControlState.h"
-class CruiseControl;
 
-class CruiseControlOffState: public CruiseControlState {
+
+class CruiseControl;
+class CruiseControlStateMachine;
+
+class CruiseControlOffState : public CruiseControlState <CruiseControlStateMachine> 
+{
 public:
 	CruiseControlOffState();
 	virtual ~CruiseControlOffState();
-    
-   virtual void transitionOn(CruiseControl* a_cruiseControl);
-    
+
+   CruiseControlState<CruiseControlStateMachine>* transitionOn(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg);
+   
 };
 
 #endif /* CRUISECONTROLOFFSTATE_H_ */

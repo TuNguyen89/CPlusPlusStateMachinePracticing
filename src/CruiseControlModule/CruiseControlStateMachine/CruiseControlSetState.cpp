@@ -7,7 +7,6 @@
 
 CruiseControlSetState::CruiseControlSetState() 
 {
-   
    stateName = "Set"; 
 }
 
@@ -16,19 +15,25 @@ CruiseControlSetState::~CruiseControlSetState()
 	// TODO Auto-generated destructor stub
 }
 
-void CruiseControlSetState::transitionAccPressed(CruiseControl* a_cruiseControl)
-{
 
+CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionAccPressed(CruiseControlStateMachine * aMachine, 
+                                                                                           const MyNameSpace::f_any & arg)
+{
    //Action: accP
    //Transition: Set -> Wait
-   a_cruiseControl->state = new CruiseControlAccState();
-   delete this;
+   return &(aMachine->mAccState);
 }
 
-void CruiseControlSetState::transitionBrake(CruiseControl* a_cruiseControl)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionBrake(CruiseControlStateMachine * aMachine,
+                                                                                      const MyNameSpace::f_any & arg)
 {
    //Action: Brake
    //Transition: Set -> Wait
-   a_cruiseControl->state = new CruiseControlWaitState();
-   delete this;
+   return &(aMachine->mWait);
+}
+
+CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionSet(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg)
+{
+   //TODO: Check the current speed and set the new one if appropriate
+   return this;
 }

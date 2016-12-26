@@ -5,12 +5,15 @@
 #include "CruiseControlState.h"
 
 class CruiseControl;
+class CruiseControlStateMachine;
 
-class CruiseControlActiveState: public CruiseControlState {
+class CruiseControlActiveState: public CruiseControlState <CruiseControlStateMachine> 
+{
 public:
     CruiseControlActiveState();
     virtual ~CruiseControlActiveState();
-    void transitionOn(CruiseControl* a_cruiseControl);
+
+    CruiseControlState<CruiseControlStateMachine>*  transitionOn(CruiseControlStateMachine* aMachine, const MyNameSpace::f_any&);
 };
 
 #endif /* CRUISECONTROLACTIVESTATE_H_ */

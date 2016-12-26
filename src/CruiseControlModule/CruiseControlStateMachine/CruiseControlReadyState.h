@@ -10,7 +10,8 @@ class CruiseControlReadyState: public CruiseControlActiveState {
 public:
    CruiseControlReadyState();
    virtual ~CruiseControlReadyState();
-   virtual void transitionSet(CruiseControl* control, unsigned int a_cruiseSpeed);
+   
+   CruiseControlState<CruiseControlStateMachine>*  transitionSet(CruiseControlStateMachine* aMachine, const MyNameSpace::f_any&);
 };
 
 #endif /* CRUISECONTROLREADYSTATE_H_ */

@@ -13,13 +13,9 @@ CruiseControlReadyState::~CruiseControlReadyState()
 	
 }
 
-void CruiseControlReadyState::transitionSet(CruiseControl* control, unsigned int a_cruiseSpeed)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlReadyState::transitionSet(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any &)
 {
-   if (a_cruiseSpeed < MIN_CAR_SPEED_TO_ACTIVE)
-   {
-      return;
-   }
-   control->state = new CruiseControlSetState();
-   control->cruiseSpeed = a_cruiseSpeed;
-   delete this;
+   //TODO Check guard condition here
+   //if (a_cruiseSpeed < MIN_CAR_SPEED_TO_ACTIVE)
+   return &(aMachine->mSetState);
 }

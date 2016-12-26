@@ -21,8 +21,10 @@
 #ifndef CRUISECONTROL_H_
 #define CRUISECONTROL_H_
 
+#include "CruiseControlStateMachine.h"
 #include "CruiseControlState.h"
-
+//#include "FSM_TBaseState.h"
+//#include "FSM_TStateMachine.h"
 
 /**
 * Action Enum
@@ -79,17 +81,13 @@ public:
 
 private:
 
-    CruiseControlState *state; ///Current state of Cruise Control system
+    //CruiseControlState *state; ///Current state of Cruise Control system
     int cruiseSpeed;           ///Current set speed of Cruise Control system
 
-    //Friend class delcelation
-    friend class CruiseControlOffState;
-    friend class CruiseControlReadyState;
-    friend class CruiseControlSetState;
-    friend class CruiseControlWaitState;
-    friend class CruiseControlAccState;
-    friend class CruiseControlActiveState;
+    // State machine
+    CruiseControlStateMachine mStateMachine;
 
+    CruiseControl(const CruiseControl& aCopy);
 };
 
 #endif /* CRUISECONTROL_H_ */

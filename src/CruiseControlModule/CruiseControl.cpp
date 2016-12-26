@@ -5,54 +5,48 @@
 
 
 #include "CruiseControl.h"
-#include "CruiseControlOffState.h"
 
 #include <assert.h>
 #include <sstream>
 
-CruiseControl::CruiseControl() {
-    
-   //Default state = OFF and cruise speed = 0
-   state = new CruiseControlOffState();
+CruiseControl::CruiseControl()
+{
    cruiseSpeed = 0;
 }
 
 CruiseControl::~CruiseControl() 
 {
-   delete state;
+   //delete state;
 }
 
 void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpeed)
 {
+
+   CruiseControlStateMachine::Event eventToHandle = 0;
    switch (action)
    {
       case OnAction:
-
-         state->transitionOn(this);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionOn;
          break;
       
       case SetAction:
-         state->transitionSet(this, a_currentCarSpeed);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionSet;
          break;
       
       case BreakAction:
-
-         state->transitionBrake(this);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionBrake;
          break;
 
       case AccPressedAction:
-
-         state->transitionAccPressed(this);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionAccPressed;
          break;
 
       case AccReleasedAction:
-         
-         state->transitionAccReleased(this);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionAccReleased;
          break;
 
       case ResumAction:
-
-         state->transitionResume(this);
+         eventToHandle = &CruiseControlState<CruiseControlStateMachine>::transitionResume;
          break;
 
       case InvalidAction:
@@ -61,12 +55,14 @@ void CruiseControl::handleAction(ActionEnum action, unsigned int a_currentCarSpe
          assert(false);
          break;
    }
+
+   mStateMachine.run(eventToHandle, a_currentCarSpeed);
 }
 
 std::string CruiseControl::getStatus() {
 
    std::stringstream strStream;
-   strStream << state->getStateName() << "\t" << cruiseSpeed << std::endl;
+   strStream << mStateMachine.getCurrentStateName() << "\t" << cruiseSpeed << std::endl;
    
    return (strStream.str());
 }

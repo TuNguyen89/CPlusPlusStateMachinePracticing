@@ -18,6 +18,7 @@ configure_file (
 include_directories("${PROJECT_BINARY_DIR}/test")
 include_directories("${PROJECT_BINARY_DIR}/include")
 include_directories("${PROJECT_BINARY_DIR}/src")
+include_directories("${PROJECT_BINARY_DIR}/src/StateMachineCommon")
 
 set (SRC_CRUISECONTROL_DIR "src/CruiseControlModule")
 set (SRC_CRUISECONTROL_STATEMACHINE_DIR "${SRC_CRUISECONTROL_DIR}/CruiseControlStateMachine")
@@ -35,8 +36,8 @@ add_subdirectory(${SRC_CRUISECONTROL_DIR})
 add_subdirectory(${SRC_ADAPTIVECRUISECONTROL_DIR})
 
 file(GLOB_RECURSE CruiseControlSourceFiles
-                  ${SRC_CRUISECONTROL_DIR}/*.cpp
                   ${SRC_CRUISECONTROL_STATEMACHINE_DIR}/*.cpp
+                  ${SRC_CRUISECONTROL_DIR}/*.cpp
                   )
 add_library(CruiseControl ${CruiseControlSourceFiles})
 
