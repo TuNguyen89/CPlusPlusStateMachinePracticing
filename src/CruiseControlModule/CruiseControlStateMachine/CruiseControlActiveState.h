@@ -13,7 +13,7 @@ public:
     CruiseControlActiveState();
     virtual ~CruiseControlActiveState();
 
-    CruiseControlState<CruiseControlStateMachine>*  transitionOn(CruiseControlStateMachine* aMachine, const MyNameSpace::f_any&);
+    CruiseControlState<CruiseControlStateMachine>*  transitionOn(CruiseControlStateMachine* aMachine, EventDataType arg);
 };
 
 #endif /* CRUISECONTROLACTIVESTATE_H_ */

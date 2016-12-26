@@ -10,7 +10,7 @@ public:
 	virtual ~CruiseControlAccState();
 
    CruiseControlState<CruiseControlStateMachine>* transitionAccReleased(CruiseControlStateMachine * aMachine,
-                                                                        const MyNameSpace::f_any & arg);
+      EventDataType arg);
 };
 
 #endif /* CRUISECONTROLACCSTATE_H_ */

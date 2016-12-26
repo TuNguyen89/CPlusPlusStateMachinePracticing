@@ -13,7 +13,7 @@ public:
 	CruiseControlOffState();
 	virtual ~CruiseControlOffState();
 
-   CruiseControlState<CruiseControlStateMachine>* transitionOn(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg);
+   CruiseControlState<CruiseControlStateMachine>* transitionOn(CruiseControlStateMachine * aMachine, const unsigned int & arg);
    
 };
 

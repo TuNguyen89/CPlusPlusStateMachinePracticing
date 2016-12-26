@@ -13,7 +13,7 @@ CruiseControlOffState::~CruiseControlOffState()
 }
 
 CruiseControlState<CruiseControlStateMachine>* CruiseControlOffState::transitionOn(CruiseControlStateMachine* aMachine,
-                                                                                   const MyNameSpace::f_any& arg)
+                                                                                   EventDataType arg)
 {
    return &(aMachine->mReadyState);
 }

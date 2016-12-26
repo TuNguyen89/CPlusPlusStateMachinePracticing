@@ -1,8 +1,8 @@
-Speed	100
 Off	0
-Speed	100
-Gap	100
-Speed	100
-Standby	100
-Speed	100
 Off	0
+Ready	0
+Ready	0
+Set	0
+Acc	0
+Set	0
+Set	0

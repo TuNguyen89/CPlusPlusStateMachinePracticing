@@ -14,7 +14,7 @@ CruiseControlActiveState::~CruiseControlActiveState()
 	
 }
 
-CruiseControlState<CruiseControlStateMachine>* CruiseControlActiveState::transitionOn(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any &)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlActiveState::transitionOn(CruiseControlStateMachine * aMachine, EventDataType arg)
 {
    //TODO
    //Transition from Active -> Off

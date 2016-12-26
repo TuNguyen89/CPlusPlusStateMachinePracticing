@@ -14,7 +14,7 @@ CruiseControlAccState::~CruiseControlAccState()
 	// TODO Auto-generated destructor stub
 }
 
-CruiseControlState<CruiseControlStateMachine>* CruiseControlAccState::transitionAccReleased(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlAccState::transitionAccReleased(CruiseControlStateMachine * aMachine, EventDataType arg)
 {
    //Action: accR
    //Transition: Acc -> Set

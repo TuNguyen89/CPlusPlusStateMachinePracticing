@@ -17,7 +17,7 @@ CruiseControlSetState::~CruiseControlSetState()
 
 
 CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionAccPressed(CruiseControlStateMachine * aMachine, 
-                                                                                           const MyNameSpace::f_any & arg)
+                                                                                           EventDataType arg)
 {
    //Action: accP
    //Transition: Set -> Wait
@@ -25,14 +25,14 @@ CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transition
 }
 
 CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionBrake(CruiseControlStateMachine * aMachine,
-                                                                                      const MyNameSpace::f_any & arg)
+                                                                                      EventDataType arg)
 {
    //Action: Brake
    //Transition: Set -> Wait
    return &(aMachine->mWait);
 }
 
-CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionSet(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlSetState::transitionSet(CruiseControlStateMachine * aMachine, EventDataType arg)
 {
    //TODO: Check the current speed and set the new one if appropriate
    return this;

@@ -12,6 +12,7 @@
 CruiseControl::CruiseControl()
 {
    cruiseSpeed = 0;
+   mStateMachine.transition(&(mStateMachine.mOffState));
 }
 
 CruiseControl::~CruiseControl() 

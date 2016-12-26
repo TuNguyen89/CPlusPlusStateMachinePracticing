@@ -14,8 +14,7 @@ void CruiseControlStateMachine::run(Event aReceivedEvent, unsigned int aInputDat
 {
    if(aReceivedEvent)
    {
-      MyNameSpace::f_any arg(aInputData);
-      dispatch(aReceivedEvent, arg);
+      dispatch(aReceivedEvent, aInputData);
    }
 }
 

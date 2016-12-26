@@ -17,7 +17,7 @@ CruiseControlWaitState::~CruiseControlWaitState()
 }
 
 
-CruiseControlState<CruiseControlStateMachine>* CruiseControlWaitState::transitionResume(CruiseControlStateMachine * aMachine, const MyNameSpace::f_any & arg)
+CruiseControlState<CruiseControlStateMachine>* CruiseControlWaitState::transitionResume(CruiseControlStateMachine * aMachine, EventDataType arg)
 {
    //Action: Resume
    //Transition: Wait -> Set

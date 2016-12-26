@@ -11,7 +11,7 @@ public:
    CruiseControlReadyState();
    virtual ~CruiseControlReadyState();
    
-   CruiseControlState<CruiseControlStateMachine>*  transitionSet(CruiseControlStateMachine* aMachine, const MyNameSpace::f_any&);
+   CruiseControlState<CruiseControlStateMachine>*  transitionSet(CruiseControlStateMachine* aMachine, EventDataType aVehicelSpeed);
 };
 
 #endif /* CRUISECONTROLREADYSTATE_H_ */
