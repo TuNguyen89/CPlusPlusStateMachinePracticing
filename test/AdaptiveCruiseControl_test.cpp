@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
 
    if ( (argc == 2) && (std::string(argv[1]) == "--console"))
    {
-      AdaptiveCruiseControl control = AdaptiveCruiseControl();
+      AdaptiveCruiseControl control;
       for (;;) {
           std::string action;
           std::string speedValue;
@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
    vector<UserInput> inputList = parseInputFile(inputFile);
 
    //Step 2: Handle each action
-   AdaptiveCruiseControl control = AdaptiveCruiseControl();
+   AdaptiveCruiseControl control;
    //Open and clean the ouput file
    ofstream output(outputFileName, std::ofstream::out, std::ofstream::trunc);
 

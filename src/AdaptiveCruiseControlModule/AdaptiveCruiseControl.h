@@ -1,6 +1,8 @@
 /**
 * @ingroup Adaptive Cruise Control Module
 * Adaptive Cruise control module, handle cruise control feature
+* Adaptive Cruise control use the implementation of table driven state machine
+* more information could be found at: http://codeproject.com/Articles/1087619/State-Machine-Design-in-Cplusplus
 */
 
 /*! Adaptive Cruise Control module
@@ -11,7 +13,7 @@
 
    Example Usage:
     @code
-       AdaptiveCruiseControl control = new AdaptiveCruiseControl();
+       AdaptiveCruiseControl control;
        control.handleAction(AccButtonAction, MotorData*);
        control.handleAction(ResumeButtonAction, MotorData* );
        control.getStatus();
@@ -80,6 +82,9 @@ public:
    void handleAction(AccActionEnum action, MotorData* pData);
 
 private:
+
+   //Hide copy constructor
+   AdaptiveCruiseControl(const AdaptiveCruiseControl&);
 
    //internal action funtion.
    void setAccButton(MotorData*);

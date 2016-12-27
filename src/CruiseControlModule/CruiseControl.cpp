@@ -15,7 +15,7 @@ CruiseControl::CruiseControl()
 
 CruiseControl::~CruiseControl() 
 {
-   //delete state;
+   
 }
 
 void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSpeed)

@@ -6,17 +6,12 @@
 #include <typeinfo>
 #include "Fault.h"
 
-// Uncomment the include below the XALLOCATOR line to use the xallocator instead 
-// of the global heap. Any EventData, or derived class thereof, created with 
-// new/delete will be routed to the xallocator. See xallocator.h for more info. 
-//#include "xallocator.h"
 
 /// @beief Unique state machine event data must inherit from this class.
 class EventData
 {
 public:
 	virtual ~EventData() {}
-	//XALLOCATOR
 };
 
 typedef EventData NoEventData;
@@ -192,6 +187,12 @@ protected:
 	void InternalEvent(BYTE newState, const EventData* pData = NULL);
 	
 private:
+
+   /// Hidden default construtor, copy constructor, assignment operator until it used
+   StateMachine();
+   StateMachine(const StateMachine&);
+   StateMachine& operator=(const StateMachine& rhs);
+
 	/// The maximum number of state machine states.
 	const BYTE MAX_STATES;
 
