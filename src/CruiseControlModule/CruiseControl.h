@@ -75,7 +75,7 @@ public:
     * Hanlde action from outside world
     * @return current cruise control state and cruise speed
     */
-    std::string getStatus();
+    std::string getStatus() const;
 
 private:
 

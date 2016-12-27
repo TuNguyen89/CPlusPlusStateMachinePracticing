@@ -116,34 +116,34 @@ AccActionEnum convertAccUserInput(e_UserInputType a_userInput)
    switch (a_userInput)
    {
       case ON:
-         return AccButtonAction;
+         return E_ACTION_ACC_BUTTON;
       
       case RESUME:
-         return ResumeButtonAction;
+         return E_ACTION_RESUME_BUTTON;
       
       case BRAKE:
-         return BrakePushedAction;
+         return E_ACTION_BRAKE_PUSHED;
       
       case CAN:
-         return CancelButtonAction;
+         return E_ACTION_CANCEL_BUTTON;
 
       case GAS:
-         return GasPushedAction;
+         return E_ACTION_GAS_PUSHED;
 
       case DETECT:
-         return TargetVehicelDetected;
+         return E_ACTION_VEHICLE_DETECTED;
          
       case NODETECT:
-         return TargetVehicelDisappear;
+         return E_ACTION_VEHICLE_DISAPPEARED;
 
       case INVALID_TYPE:
       default:
          std::cout << "ERROR: Invalid input type" << endl;
-         return AccInvalidAction;
+         return E_ACTION_ACC_INVALID;
          break;
    }
 
-   return AccInvalidAction;
+   return E_ACTION_ACC_INVALID;
 }
 
 vector<UserInput> parseInputFile(string fileName)

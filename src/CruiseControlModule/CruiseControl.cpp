@@ -15,7 +15,6 @@ CruiseControl::CruiseControl()
 
 CruiseControl::~CruiseControl() 
 {
-   
 }
 
 void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSpeed)
@@ -58,7 +57,7 @@ void CruiseControl::handleAction(ActionEnum action, EventDataType a_currentCarSp
    mStateMachine.run(eventToHandle, a_currentCarSpeed);
 }
 
-std::string CruiseControl::getStatus() 
+std::string CruiseControl::getStatus() const
 {
 
    std::stringstream strStream;

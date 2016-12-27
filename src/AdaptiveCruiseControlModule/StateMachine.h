@@ -172,7 +172,7 @@ public:
 
 	/// Gets the current state machine state.
 	/// @return Current state machine state.
-	BYTE GetCurrentState() { return m_currentState; }
+	BYTE GetCurrentState() const { return m_currentState; }
 	
 protected:
 	/// External state machine event.

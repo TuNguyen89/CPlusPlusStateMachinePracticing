@@ -21,6 +21,5 @@ void CruiseControlStateMachine::run(Event aReceivedEvent, EventDataType aInputDa
 
 std::string CruiseControlStateMachine::getCurrentStateName() const
 {
-   const CruiseControlState<CruiseControlStateMachine>* const state = getCurrentState();
-   return state->getStateName();
+   return getCurrentState()->getStateName();
 }

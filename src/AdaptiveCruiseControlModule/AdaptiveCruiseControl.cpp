@@ -3,7 +3,8 @@
 #include <sstream>
 #include "assert.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 std::string AdaptiveCruiseControl::E_StateNames[E_STATE_MAX] = {
       "Off",
@@ -22,7 +23,7 @@ AdaptiveCruiseControl::~AdaptiveCruiseControl()
 {
 }
 
-std::string AdaptiveCruiseControl::getStatus()
+std::string AdaptiveCruiseControl::getStatus() const
 {
    std::stringstream strStream;
    strStream << E_StateNames[GetCurrentState()] << "\t" << m_currentSpeed << std::endl;
@@ -33,29 +34,29 @@ void AdaptiveCruiseControl::handleAction(AccActionEnum action, MotorData* pData)
 {
    switch (action)
    {
-      case AccButtonAction:
+      case E_ACTION_ACC_BUTTON:
          setAccButton(pData);
          break;
       
-      case ResumeButtonAction:
+      case E_ACTION_RESUME_BUTTON:
          setResumeButton(pData);
          break;
       
-      case CancelButtonAction:
-      case BrakePushedAction:
-      case GasPushedAction:
+      case E_ACTION_CANCEL_BUTTON:
+      case E_ACTION_BRAKE_PUSHED:
+      case E_ACTION_GAS_PUSHED:
          setBrakeCancelGas(pData);
          break;
 
-      case TargetVehicelDetected:
+      case E_ACTION_VEHICLE_DETECTED:
          setVehicleDetected(pData);
          break;
 
-      case TargetVehicelDisappear:
+      case E_ACTION_VEHICLE_DISAPPEARED:
          setNotVehicleDetected(pData);
          break;
 
-      case AccInvalidAction:
+      case E_ACTION_ACC_INVALID:
       default:
          //Debug log: Invalid action
          assert(false);

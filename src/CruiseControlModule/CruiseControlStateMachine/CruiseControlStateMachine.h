@@ -37,7 +37,7 @@ public:
 
 private:
 
-   CruiseControlStateMachine(const CruiseControlStateMachine& aCopy);
+   CruiseControlStateMachine(const CruiseControlStateMachine&);
    unsigned int cruiseSpeed;
 
 };

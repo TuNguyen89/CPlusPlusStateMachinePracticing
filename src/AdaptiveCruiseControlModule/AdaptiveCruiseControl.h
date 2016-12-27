@@ -14,8 +14,8 @@
    Example Usage:
     @code
        AdaptiveCruiseControl control;
-       control.handleAction(AccButtonAction, MotorData*);
-       control.handleAction(ResumeButtonAction, MotorData* );
+       control.handleAction(E_ACTION_ACC_BUTTON, MotorData*);
+       control.handleAction(E_ACTION_RESUME_BUTTON, MotorData* );
        control.getStatus();
     @endcode
 */
@@ -33,23 +33,23 @@ const unsigned int MIN_ACC_CAR_SPEED_TO_ACTIVE = 70; //Minimum car speed to 70km
 */
 struct MotorData : public EventData
 {
-   int speed;
+   unsigned int speed;
 };
 
 /**
 * Action Enum
 * The avaiable action that adaptive cruise control could handle.
 */
-enum AccActionEnum
+enum AccActionEnum 
 {
-   AccButtonAction,
-   ResumeButtonAction,
-   BrakePushedAction,
-   GasPushedAction,
-   CancelButtonAction,
-   TargetVehicelDetected,
-   TargetVehicelDisappear,
-   AccInvalidAction
+   E_ACTION_ACC_BUTTON,
+   E_ACTION_RESUME_BUTTON,
+   E_ACTION_BRAKE_PUSHED,
+   E_ACTION_GAS_PUSHED,
+   E_ACTION_CANCEL_BUTTON,
+   E_ACTION_VEHICLE_DETECTED,
+   E_ACTION_VEHICLE_DISAPPEARED,
+   E_ACTION_ACC_INVALID
 };
 
 class AdaptiveCruiseControl : public StateMachine
@@ -71,7 +71,7 @@ public:
    * Hanlde action from outside world
    * @return current adaptive cruise control state and cruise speed.
    */
-   std::string getStatus();
+   std::string getStatus() const;
    
    /**
    * Hanlde action from outside world
@@ -83,8 +83,8 @@ public:
 
 private:
 
-   //Hide copy constructor
    AdaptiveCruiseControl(const AdaptiveCruiseControl&);
+   AdaptiveCruiseControl& operator=(const AdaptiveCruiseControl&);
 
    //internal action funtion.
    void setAccButton(MotorData*);
