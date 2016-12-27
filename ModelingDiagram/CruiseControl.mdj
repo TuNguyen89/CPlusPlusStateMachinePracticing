@@ -9536,6 +9536,56 @@
 											"propertyLabel": {
 												"$ref": "AAAAAAFZOnrbDgqPVNQ="
 											}
+										},
+										{
+											"_type": "UMLConstraintView",
+											"_id": "AAAAAAFZPwy4Bw5zZBY=",
+											"_parent": {
+												"$ref": "AAAAAAFY/A1Ss4URMew="
+											},
+											"model": {
+												"$ref": "AAAAAAFZPwueyQ5sKZs="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": false,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 488,
+											"top": 40,
+											"width": 146,
+											"height": 37,
+											"autoResize": false,
+											"text": "{Speed >= 45 Km/h}",
+											"wordWrap": true
+										},
+										{
+											"_type": "UMLConstraintLinkView",
+											"_id": "AAAAAAFZPwy4CQ50N6Q=",
+											"_parent": {
+												"$ref": "AAAAAAFY/A1Ss4URMew="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"head": {
+												"$ref": "AAAAAAFY/BTn0IbZa+E="
+											},
+											"tail": {
+												"$ref": "AAAAAAFZPwy4Bw5zZBY="
+											},
+											"lineStyle": 1,
+											"points": "526:77;460:114"
 										}
 									]
 								}
@@ -9577,6 +9627,23 @@
 												"$ref": "AAAAAAFY/A1Ss4UQdoY="
 											},
 											"name": "Set",
+											"ownedElements": [
+												{
+													"_type": "UMLConstraint",
+													"_id": "AAAAAAFZPwueyQ5sKZs=",
+													"_parent": {
+														"$ref": "AAAAAAFY/BTn0IbYSwM="
+													},
+													"name": "Minimum Vehicle Speed",
+													"visibility": "public",
+													"specification": "Speed >= 45 Km/h",
+													"constrainedElements": [
+														{
+															"$ref": "AAAAAAFZOo6HjhBduvo="
+														}
+													]
+												}
+											],
 											"visibility": "public"
 										},
 										{
@@ -14294,6 +14361,7 @@
 							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -14311,6 +14379,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -14328,6 +14397,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -14345,6 +14415,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -14362,6 +14433,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
@@ -14379,6 +14451,7 @@
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
+							"type": "",
 							"isReadOnly": false,
 							"isOrdered": false,
 							"isUnique": false,
