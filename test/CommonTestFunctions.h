@@ -35,6 +35,8 @@ const string inputGas = "gas";
 const string inputVehicelDetected = "detect";
 const string inputNotVehicelDetected = "nodetect";
 
+const std::ios_base::openmode outputAndDiscardExisingContentMode = (std::ofstream::out | std::ofstream::trunc);
+
 bool equal_files(const std::string& a, const std::string& b);
 
 e_UserInputType getUserInputTypeFromString(string a_inputType);

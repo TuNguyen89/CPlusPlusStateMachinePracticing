@@ -10,7 +10,7 @@ public:
    //for stack allocated states
    //note that constructors/destructors should not be used in this case, 
    //instead rely on on_enter/on_exit
-   typedef typename STATE* (STATE::*Event)(DERIVED_FSM*, EventDataType);
+   typedef STATE* (STATE::*Event)(DERIVED_FSM*, EventDataType);
    
    STATE* dispatch(Event e, EventDataType eventData)
    {

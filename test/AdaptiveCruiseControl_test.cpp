@@ -53,7 +53,7 @@ int main (int argc, char *argv[])
    //Step 2: Handle each action
    AdaptiveCruiseControl control;
    //Open and clean the ouput file
-   ofstream output(outputFileName, std::ofstream::out, std::ofstream::trunc);
+   ofstream output(outputFileName.c_str(), outputAndDiscardExisingContentMode);
 
    // FOR each action in the list
    for (vector<UserInput>::iterator item = inputList.begin(); item != inputList.end(); ++item)

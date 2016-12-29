@@ -9,16 +9,16 @@
 #include "CruiseControl.h"
 #include "CommonTestFunctions.h"
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
    std::string inputFile = inputFileName;
    if (argc < 3) {
       cout << "ERROR: the number of argument is not correct, "
-           << "please pass the file name of input.text and output.txt" << endl;
+         << "please pass the file name of input.text and output.txt" << endl;
 
       cout << "Usage: " << argv[0] << " inputPath" << " expectedOutputPath " << endl;
-      
+
       system("PAUSE");
       return 0;
    }
@@ -32,7 +32,7 @@ int main (int argc, char *argv[])
    //Step 2: Handle each action
    CruiseControl control;
    //Open and clean the ouput file
-   ofstream output(outputFileName, std::ofstream::out, std::ofstream::trunc);
+   ofstream output(outputFileName.c_str(), outputAndDiscardExisingContentMode);
 
    // FOR each action in the list
    for (vector<UserInput>::iterator item = inputList.begin(); item != inputList.end(); ++item)
