@@ -2,6 +2,7 @@
 #include "CruiseControl.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <streambuf>
@@ -116,25 +117,28 @@ AccActionEnum convertAccUserInput(e_UserInputType a_userInput)
    switch (a_userInput)
    {
       case ON:
-         return E_ACTION_ACC_BUTTON;
-      
+         return E_ACTION_PRESS_ACC_BUTTON;
+
+      case SET:
+         return E_ACTION_PRESS_SET_BUTTON;
+
       case RESUME:
-         return E_ACTION_RESUME_BUTTON;
+         return E_ACTION_PRESS_RESUME_BUTTON;
       
       case BRAKE:
-         return E_ACTION_BRAKE_PUSHED;
+         return E_ACTION_PUSH_BRAKE_PEDAL;
       
       case CAN:
-         return E_ACTION_CANCEL_BUTTON;
+         return E_ACTION_PUSH_CANCEL_BUTTON;
 
       case GAS:
-         return E_ACTION_GAS_PUSHED;
+         return E_ACTION_PUSH_GAS_PEDAL;
 
       case DETECT:
-         return E_ACTION_VEHICLE_DETECTED;
+         return E_ACTION_DECTECT_VEHICLE;
          
       case NODETECT:
-         return E_ACTION_VEHICLE_DISAPPEARED;
+         return E_ACTION_NOT_DECTECT_VEHICLE;
 
       case INVALID_TYPE:
       default:
@@ -180,6 +184,34 @@ vector<UserInput> parseInputFile(string fileName)
 }
 
 
+
+std::string removeAllSpace(string& orgin)
+{
+   orgin.erase(std::remove(orgin.begin(), orgin.end(), ' '),
+      orgin.end());
+
+   return orgin;
+}
+
+bool compareTwoLinesSpacesRegaless(const string& left, const string& right)
+{
+   std::string copyOfLeft = left;
+   std::string copyOfRight = right;
+
+   if (removeAllSpace(copyOfLeft) != removeAllSpace(copyOfRight))
+   {
+      std::cout << "left >>>>>>>" << endl;
+      std::cout << copyOfLeft << endl;
+      std::cout << copyOfRight << endl;
+      std::cout << "<<<<<< right" << endl;
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+}
+
 bool equal_files(const std::string& a, const std::string& b)
 {
    bool ret = true;
@@ -187,11 +219,14 @@ bool equal_files(const std::string& a, const std::string& b)
    ifstream file2(b);
    while ((!file1.eof()) && (!file2.eof()))
    {
-      string line1,line2;
+      std::string line1,line2;
       getline(file1,line1);
       getline(file2,line2);
-      if (line1 != line2) {
-         ret = false;
+      if (!compareTwoLinesSpacesRegaless(line1, line2))
+      {
+         file1.close();
+         file2.close();
+         return false;
       }
    }
 
@@ -200,6 +235,7 @@ bool equal_files(const std::string& a, const std::string& b)
    
    return ret;
 }
+
 
 MotorData* allocateMotorData(int speed = 10)
 {

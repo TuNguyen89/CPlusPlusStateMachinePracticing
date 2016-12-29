@@ -1,0 +1,4 @@
+Armed	      0	         Black
+Speed	      100      	Green
+Override	   100	      Red
+Speed	      100	      Green

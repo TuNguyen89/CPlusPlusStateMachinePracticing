@@ -19,8 +19,13 @@ int main (int argc, char *argv[])
           if (action == "quit" || action == "q" ) break;
 
           if(action == "" || speedValue == "") continue;
-          speed = atoi(speedValue.c_str()); 
-          control.handleAction(convertAccUserInput(getUserInputTypeFromString(action)), 
+          speed = atoi(speedValue.c_str());
+          e_UserInputType accUserInput = getUserInputTypeFromString(action);
+          if( accUserInput == INVALID_TYPE ) {
+             cout << "INVALID input: failed" << endl;
+             continue;
+          }
+          control.handleAction(convertAccUserInput(accUserInput), 
                          allocateMotorData(speed));
           cout << "-----------------------------" << endl;
         }

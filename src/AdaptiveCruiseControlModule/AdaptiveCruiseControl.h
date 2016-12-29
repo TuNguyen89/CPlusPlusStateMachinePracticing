@@ -14,8 +14,8 @@
    Example Usage:
     @code
        AdaptiveCruiseControl control;
-       control.handleAction(E_ACTION_ACC_BUTTON, MotorData*);
-       control.handleAction(E_ACTION_RESUME_BUTTON, MotorData* );
+       control.handleAction(E_ACTION_PRESS_ACC_BUTTON, MotorData*);
+       control.handleAction(E_ACTION_PRESS_RESUME_BUTTON, MotorData* );
        control.getStatus();
     @endcode
 */
@@ -25,7 +25,7 @@
 #include "StateMachine.h"
 #include <string>
 
-const unsigned int MIN_ACC_CAR_SPEED_TO_ACTIVE = 70; //Minimum car speed to 70kms
+const unsigned int MIN_ACC_CAR_SPEED_TO_ACTIVE = 40; //Minimum car speed to 40kms
 
 /**
 * Data Structure 
@@ -42,13 +42,14 @@ struct MotorData : public EventData
 */
 enum AccActionEnum 
 {
-   E_ACTION_ACC_BUTTON,
-   E_ACTION_RESUME_BUTTON,
-   E_ACTION_BRAKE_PUSHED,
-   E_ACTION_GAS_PUSHED,
-   E_ACTION_CANCEL_BUTTON,
-   E_ACTION_VEHICLE_DETECTED,
-   E_ACTION_VEHICLE_DISAPPEARED,
+   E_ACTION_PRESS_ACC_BUTTON,
+   E_ACTION_PRESS_SET_BUTTON,
+   E_ACTION_PRESS_RESUME_BUTTON,
+   E_ACTION_PUSH_BRAKE_PEDAL,
+   E_ACTION_PUSH_GAS_PEDAL,
+   E_ACTION_PUSH_CANCEL_BUTTON,
+   E_ACTION_DECTECT_VEHICLE,
+   E_ACTION_NOT_DECTECT_VEHICLE,
    E_ACTION_ACC_INVALID
 };
 
@@ -87,30 +88,38 @@ private:
    AdaptiveCruiseControl& operator=(const AdaptiveCruiseControl&);
 
    //internal action funtion.
-   void setAccButton(MotorData*);
-   void setResumeButton(MotorData* pData);
-   void setBrakeCancelGas(MotorData* pData);
-   void setVehicleDetected(MotorData* pData);
-   void setNotVehicleDetected(MotorData* pData);
+   void pressAccButton(MotorData*);
+   void pressSetButton(MotorData*);
+   void pressResumeButton(MotorData* pData);
+   void pressCancelAndPushBrakePedal(MotorData* pData);
+   void PushGasPedal(MotorData* pData);
+   void detectVehicle(MotorData* pData);
+   void notDetectVehicle(MotorData* pData);
 
    unsigned int m_currentSpeed;  // current speed of adaptive cruise system.
    
    // state enumeration
    enum E_States { 
       E_STATE_OFF = 0,
-      E_STATE_STANDBY,
+      E_STATE_ARM,
+      E_STATE_CAN,
+      E_STATE_OVR,
       E_STATE_SPD,
       E_STATE_GAP,
       E_STATE_MAX
    };
    
    // state names enumeration
-   static std::string E_StateNames[E_STATE_MAX];
+   static std::string E_StateNames[E_STATE_MAX][2];
 
    // off state functions
    STATE_DECLARE(AdaptiveCruiseControl, OffState, MotorData)
-   // standby state functions
-   STATE_DECLARE(AdaptiveCruiseControl, StandbyState, MotorData)
+   // armed state functions
+   STATE_DECLARE(AdaptiveCruiseControl, ArmedState, MotorData)
+   // cancel state functions
+   STATE_DECLARE(AdaptiveCruiseControl, CancelState, MotorData)
+   // override state functions
+   STATE_DECLARE(AdaptiveCruiseControl, OverrideState, MotorData)
    // speed state functions
    STATE_DECLARE(AdaptiveCruiseControl, SpeedState, MotorData)
    // gap state functions
@@ -122,7 +131,9 @@ private:
    // state map to define state function order
    BEGIN_STATE_MAP_EX
       STATE_MAP_ENTRY_EX(&OffState)
-      STATE_MAP_ENTRY_EX(&StandbyState)
+      STATE_MAP_ENTRY_EX(&ArmedState)
+      STATE_MAP_ENTRY_EX(&CancelState)
+      STATE_MAP_ENTRY_EX(&OverrideState)
       STATE_MAP_ENTRY_ALL_EX(&SpeedState, &GuardSpeedState, 0, 0)
       STATE_MAP_ENTRY_EX(&GapState)
    END_STATE_MAP_EX

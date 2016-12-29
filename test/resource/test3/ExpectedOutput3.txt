@@ -1,8 +1,22 @@
-Speed	100
-Off	0
-Speed	100
-Gap	100
-Speed	100
-Standby	100
-Speed	100
-Off	0
+Armed	0	Black
+Off	0	Black
+Armed	0	Black
+Speed	100	Green
+Gap	100	Green
+Speed	100	Green
+Override	100	Red
+Speed	100	Green
+Canceled	100	Red
+Speed	100	Green
+Canceled	100	Red
+Speed	100	Green
+Gap	100	Green
+Override	100	Red
+Speed	100	Green
+Gap	100	Green
+Canceled	100	Red
+Speed	100	Green
+Gap	100	Green
+Canceled	100	Red
+Speed	100	Green
+Off	0	Black

@@ -53,8 +53,6 @@ CMakeCache.txt
 cmake_install.cmake
 test/Output.txt
 *.patch
-test/resource/test4/ExpectedOutput4.txt
-test/resource/test4/Input4.txt
 test/resource/Output.txt
 *.cmake
 test/resource/Input.txt
