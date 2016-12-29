@@ -50,11 +50,13 @@ add_library(AdaptiveCruiseControl ${AdaptiveCruiseControlSourceFiles})
 
 #Cruise Control Executable         
 add_executable(CruiseControl_test
+               test/CommonTestFunctions.cpp
                test/CruiseControl_test.cpp)
 target_link_libraries(CruiseControl_test CruiseControl)
 
 #Adaptive Cruise Control Executable
 add_executable(AdaptiveCruiseControl_test
+               test/CommonTestFunctions.cpp
                test/AdaptiveCruiseControl_test.cpp)
 target_link_libraries(AdaptiveCruiseControl_test  AdaptiveCruiseControl)
 

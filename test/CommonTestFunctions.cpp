@@ -1,29 +1,7 @@
-#include "CruiseControlTypeDefs.h"
-#include "CruiseControl.h"
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <streambuf>
-#include <iterator>
-#include "AdaptiveCruiseControl.h"
 
+#include "CommonTestFunctions.h"
 
 using namespace std;
-
-const string inputFileName = "test/resource/Input.txt";
-const string outputFileName = "test/resource/Output.txt";
-const string inputOn = "on";
-const string inputSet = "set";
-const string inputResume = "resume";
-const string inputBrake = "brake";
-const string inputAccP = "accP";
-const string inputAccR = "accR";
-const string inputCancel = "cancel";
-const string inputGas = "gas";
-const string inputVehicelDetected = "detect";
-const string inputNotVehicelDetected = "nodetect";
 
 e_UserInputType getUserInputTypeFromString(string a_inputType)
 {
@@ -152,7 +130,7 @@ AccActionEnum convertAccUserInput(e_UserInputType a_userInput)
 
 vector<UserInput> parseInputFile(string fileName)
 {
-   ifstream inputFile(fileName);
+   ifstream inputFile(fileName.c_str());
    vector <UserInput> inputList;
    
    if (!inputFile)
@@ -212,11 +190,11 @@ bool compareTwoLinesSpacesRegaless(const string& left, const string& right)
    }
 }
 
-bool equal_files(const std::string& a, const std::string& b)
+bool equal_files(const std::string& leftFileName, const std::string& rightFileName)
 {
    bool ret = true;
-   ifstream file1(a);
-   ifstream file2(b);
+   ifstream file1(leftFileName.c_str());
+   ifstream file2(rightFileName.c_str());
    while ((!file1.eof()) && (!file2.eof()))
    {
       std::string line1,line2;
@@ -237,7 +215,7 @@ bool equal_files(const std::string& a, const std::string& b)
 }
 
 
-MotorData* allocateMotorData(int speed = 10)
+MotorData* allocateMotorData(int speed)
 {
    MotorData* data = new MotorData();
    data->speed = speed;

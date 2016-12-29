@@ -9,7 +9,7 @@
 #include "CruiseControlWaitState.h"
 #include "CruiseControlAccState.h"
 
-class CruiseControlStateMachine : public FSM_TStateMachine<CruiseControlStateMachine, CruiseControlState<CruiseControlStateMachine>>
+class CruiseControlStateMachine : public FSM_TStateMachine<CruiseControlStateMachine, CruiseControlState<CruiseControlStateMachine> >
 {
 public:
    CruiseControlStateMachine();

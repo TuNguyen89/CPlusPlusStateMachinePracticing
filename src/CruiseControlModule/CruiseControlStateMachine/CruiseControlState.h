@@ -6,7 +6,7 @@
 
 
 template<class FSM>
-class CruiseControlState : public FSM_TIBaseState <FSM, CruiseControlState<FSM>>
+class CruiseControlState : public FSM_TIBaseState <FSM, CruiseControlState<FSM> >
 {
 public:
    CruiseControlState() {} ;

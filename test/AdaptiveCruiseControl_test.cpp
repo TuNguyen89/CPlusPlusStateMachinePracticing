@@ -1,4 +1,4 @@
-#include "common.cpp"
+#include "CommonTestFunctions.h"
 #include "AdaptiveCruiseControl.h"
 
 int main (int argc, char *argv[])

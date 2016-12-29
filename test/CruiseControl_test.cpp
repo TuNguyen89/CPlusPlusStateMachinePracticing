@@ -7,7 +7,7 @@
 
 
 #include "CruiseControl.h"
-#include "common.cpp"
+#include "CommonTestFunctions.h"
 
 int main (int argc, char *argv[])
 {
