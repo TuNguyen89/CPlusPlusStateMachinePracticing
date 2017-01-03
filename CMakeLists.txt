@@ -84,3 +84,8 @@ do_test ("AdaptiveCruiseControl_test" 1 "${TEST_RESOURCE_DIR}/test3/Input3.txt" 
 do_test ("AdaptiveCruiseControl_test" 2 "${TEST_RESOURCE_DIR}/test4/Input4.txt" "${TEST_RESOURCE_DIR}/test4/ExpectedOutput4.txt" "True")
 
 do_test ("AdaptiveCruiseControl_test" 3 "${TEST_RESOURCE_DIR}/testReturnOff/testReturnOffInput.txt" "${TEST_RESOURCE_DIR}/testReturnOff/testReturnOffOutput.txt" "True")
+
+#set generator
+if(MSVC10)
+  set(CMAKE_GENERATOR "Visual Studio 10 2010")
+endif()
