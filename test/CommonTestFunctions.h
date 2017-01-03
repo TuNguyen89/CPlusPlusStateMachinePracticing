@@ -39,7 +39,7 @@ const std::ios_base::openmode outputAndDiscardExisingContentMode = (std::ofstrea
 
 bool equal_files(const std::string& a, const std::string& b);
 
-e_UserInputType getUserInputTypeFromString(string a_inputType);
+e_UserInputType getUserInputTypeFromString(const string& a_inputType);
 
 ActionEnum convertUserInput(e_UserInputType a_userInput);
 

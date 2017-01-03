@@ -1,9 +1,9 @@
 
+#include <cctype>
 #include "CommonTestFunctions.h"
 
-using namespace std;
 
-e_UserInputType getUserInputTypeFromString(string a_inputType)
+e_UserInputType getUserInputTypeFromString(const string& a_inputType)
 {
    if (a_inputType == inputOn) 
    {
@@ -144,6 +144,7 @@ vector<UserInput> parseInputFile(string fileName)
    UserInput item;
    while (!inputFile.eof())
    {
+
       inputFile >> userInput;
       inputFile >> carCurrentSpeed;
 
@@ -153,6 +154,10 @@ vector<UserInput> parseInputFile(string fileName)
          item.carSpeed = carCurrentSpeed;
 
          inputList.push_back(item);
+
+         //Reset the value
+         userInput = "";
+         carCurrentSpeed = 0;
       }
    }
 
@@ -165,7 +170,7 @@ vector<UserInput> parseInputFile(string fileName)
 
 std::string removeAllSpace(string& orgin)
 {
-   orgin.erase(std::remove(orgin.begin(), orgin.end(), ' '),
+   orgin.erase(std::remove_if(orgin.begin(), orgin.end(), std::isspace),
       orgin.end());
 
    return orgin;
