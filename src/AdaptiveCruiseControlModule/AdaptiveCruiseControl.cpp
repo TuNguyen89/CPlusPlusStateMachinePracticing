@@ -34,7 +34,7 @@ AdaptiveCruiseControl::~AdaptiveCruiseControl()
 std::string AdaptiveCruiseControl::getStatus() const
 {
    std::stringstream strStream;
-   int currentState = GetCurrentState();
+   int currentState = getCurrentState();
    strStream << E_StateNames[currentState][STATE_NAME]<< "\t" 
              << m_currentSpeed << "\t"
              << E_StateNames[currentState][COLOR]
@@ -192,7 +192,7 @@ STATE_DEFINE(AdaptiveCruiseControl, OverrideState, MotorData)
 STATE_DEFINE(AdaptiveCruiseControl, SpeedState, MotorData)
 {
 	cout << "Current State is SpeedState"<< endl;
-   if (GetCurrentState() == E_STATE_ARM)
+   if (getCurrentState() == E_STATE_ARM)
    {
       m_currentSpeed = data->speed;
    }

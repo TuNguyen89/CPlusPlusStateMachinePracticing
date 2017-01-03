@@ -14,9 +14,9 @@ StateMachine::StateMachine(BYTE maxStates, BYTE initialState) :
 }  
 
 //----------------------------------------------------------------------------
-// ExternalEvent
+// processExternalEvent
 //----------------------------------------------------------------------------
-void StateMachine::ExternalEvent(BYTE newState, const EventData* pData)
+void StateMachine::processExternalEvent(BYTE newState, const EventData* pData)
 {
 	// If we are supposed to ignore this event
 	if (newState == EVENT_IGNORED)
@@ -30,20 +30,20 @@ void StateMachine::ExternalEvent(BYTE newState, const EventData* pData)
 		// TODO - capture software lock here for thread-safety if necessary
 
 		// Generate the event
-		InternalEvent(newState, pData);
+		processInternalEvent(newState, pData);
 
 		// Execute the state engine. This function call will only return
 		// when all state machine events are processed.
-		StateEngine();
+		stateEngine();
 
 		// TODO - release software lock here 
 	}
 }
 
 //----------------------------------------------------------------------------
-// InternalEvent
+// processInternalEvent
 //----------------------------------------------------------------------------
-void StateMachine::InternalEvent(BYTE newState, const EventData* pData)
+void StateMachine::processInternalEvent(BYTE newState, const EventData* pData)
 {
 	if (pData == NULL)
 		pData = new NoEventData();
@@ -54,27 +54,27 @@ void StateMachine::InternalEvent(BYTE newState, const EventData* pData)
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
-void StateMachine::StateEngine(void)
+void StateMachine::stateEngine(void)
 {
-	const StateMapRow* pStateMap = GetStateMap();
+	const StateMapRow* pStateMap = getStateMap();
 	if (pStateMap != NULL)
-		StateEngine(pStateMap);
+		stateEngine(pStateMap);
 	else
 	{
-		const StateMapRowEx* pStateMapEx = GetStateMapEx();
+		const StateMapRowEx* pStateMapEx = getStateMapEx();
 		if (pStateMapEx != NULL)
-			StateEngine(pStateMapEx);
+			stateEngine(pStateMapEx);
 		else
 			ASSERT();
 	}
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
-void StateMachine::StateEngine(const StateMapRow* const pStateMap)
+void StateMachine::stateEngine(const StateMapRow* const pStateMap)
 {
 	const EventData* pDataTemp = NULL;	
 
@@ -98,10 +98,10 @@ void StateMachine::StateEngine(const StateMapRow* const pStateMap)
 
 		// Execute the state action passing in event data
 		ASSERT_TRUE(state != NULL);
-		state->InvokeStateAction(this, pDataTemp);
+		state->invokeStateAction(this, pDataTemp);
 
       // Switch to the new current state
-      SetCurrentState(m_newState);
+      setCurrentState(m_newState);
 
 		// If event data was used, then delete it
 		if (pDataTemp)
@@ -113,9 +113,9 @@ void StateMachine::StateEngine(const StateMapRow* const pStateMap)
 }
 
 //----------------------------------------------------------------------------
-// StateEngine
+// stateEngine
 //----------------------------------------------------------------------------
-void StateMachine::StateEngine(const StateMapRowEx* const pStateMapEx)
+void StateMachine::stateEngine(const StateMapRowEx* const pStateMapEx)
 {
 	const EventData* pDataTemp = NULL;
 
@@ -153,21 +153,21 @@ void StateMachine::StateEngine(const StateMapRowEx* const pStateMapEx)
 			{
 				// Execute the state exit action on current state before switching to new state
 				if (exit != NULL)
-					exit->InvokeExitAction(this);
+					exit->invokeExitAction(this);
 
 				// Execute the state entry action on the new state
 				if (entry != NULL)
-					entry->InvokeEntryAction(this, pDataTemp);
+					entry->invokeEntryAction(this, pDataTemp);
 
-				// Ensure exit/entry actions didn't call InternalEvent by accident 
+				// Ensure exit/entry actions didn't call processInternalEvent by accident 
 				ASSERT_TRUE(m_eventGenerated == FALSE);
 			}
          // Execute the state action passing in event data
          ASSERT_TRUE(state != NULL);
-         state->InvokeStateAction(this, pDataTemp);
+         state->invokeStateAction(this, pDataTemp);
 
 			// Switch to the new current state
-			SetCurrentState(m_newState);
+			setCurrentState(m_newState);
 		}
 
 		// If event data was used, then delete it
