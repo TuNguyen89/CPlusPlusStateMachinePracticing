@@ -12,6 +12,7 @@
 #include <streambuf>
 #include <iterator>
 #include "AdaptiveCruiseControl.h"
+#include "CruiseControlConfig.h"
 
 using std::string;
 using std::endl;
@@ -22,8 +23,7 @@ using std::ofstream;
 using std::ifstream;
 
 /// Constant value
-const string inputFileName = "test/resource/Input.txt";
-const string outputFileName = "test/resource/Output.txt";
+const string outputFileName = CruiseControl_OUTPUT_FILE_DIR;
 const string inputOn = "on";
 const string inputSet = "set";
 const string inputResume = "resume";

@@ -4,8 +4,7 @@
 int main (int argc, char *argv[])
 {
 
-   std::string inputFile = inputFileName;
-   //if ( (argc == 2) )
+   std::string inputFile = "";
 
    if ( (argc == 2) && (std::string(argv[1]) == "--console"))
    {

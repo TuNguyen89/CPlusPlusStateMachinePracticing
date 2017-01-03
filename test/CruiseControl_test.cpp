@@ -12,7 +12,6 @@
 int main(int argc, char *argv[])
 {
 
-   std::string inputFile = inputFileName;
    if (argc < 3) {
       cout << "ERROR: the number of argument is not correct, "
          << "please pass the file name of input.text and output.txt" << endl;
@@ -23,7 +22,7 @@ int main(int argc, char *argv[])
       return 0;
    }
 
-   inputFile = argv[1];
+   std::string inputFile = argv[1];
    std::string expectedOutputFile = argv[2];
 
    //Step 1: Parse the input data

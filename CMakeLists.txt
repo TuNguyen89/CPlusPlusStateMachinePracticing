@@ -5,20 +5,24 @@ include(CTest)
 #set the version
 set (CruiseControl_VERSION_MAJOR 0)
 set (CruiseControl_VERSION_MINOR 1)
+#set output txt file directory
+set (CruiseControl_OUTPUT_FILE_DIR "${PROJECT_BINARY_DIR}/ouput.txt")
+
 
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file (
     "${PROJECT_SOURCE_DIR}/CruiseControlConfig.h.in"
-    "${PROJECT_BINARY_DIR}/CruiseControlConfig.h"
+    "${PROJECT_SOURCE_DIR}/CruiseControlConfig.h"
     )
     
 # add the binary tree to the search path for include files
 # so that we will find CruiseControl.h
-include_directories("${PROJECT_BINARY_DIR}/test")
-include_directories("${PROJECT_BINARY_DIR}/include")
-include_directories("${PROJECT_BINARY_DIR}/src")
-include_directories("${PROJECT_BINARY_DIR}/src/StateMachineCommon")
+include_directories("${PROJECT_SOURCE_DIR}")
+include_directories("test")
+include_directories("include")
+include_directories("src")
+include_directories("src/StateMachineCommon")
 
 set (SRC_CRUISECONTROL_DIR "src/CruiseControlModule")
 set (SRC_CRUISECONTROL_STATEMACHINE_DIR "${SRC_CRUISECONTROL_DIR}/CruiseControlStateMachine")
@@ -26,11 +30,11 @@ set (SRC_CRUISECONTROL_STATEMACHINE_DIR "${SRC_CRUISECONTROL_DIR}/CruiseControlS
 set (SRC_ADAPTIVECRUISECONTROL_DIR "src/AdaptiveCruiseControlModule")
 
 #Cruise Control module
-include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_DIR}")
-include_directories("${PROJECT_BINARY_DIR}/${SRC_CRUISECONTROL_STATEMACHINE_DIR}")
+include_directories("${SRC_CRUISECONTROL_DIR}")
+include_directories("${SRC_CRUISECONTROL_STATEMACHINE_DIR}")
 
 #ACC module
-include_directories("${PROJECT_BINARY_DIR}/${SRC_ADAPTIVECRUISECONTROL_DIR}")
+include_directories("${SRC_ADAPTIVECRUISECONTROL_DIR}")
 
 add_subdirectory(${SRC_CRUISECONTROL_DIR})
 add_subdirectory(${SRC_ADAPTIVECRUISECONTROL_DIR})
@@ -68,7 +72,7 @@ macro (do_test program arg1 arg2 arg3 result)
     )
 endmacro (do_test)
 
-set (TEST_RESOURCE_DIR "test/resource")
+set (TEST_RESOURCE_DIR "${PROJECT_SOURCE_DIR}/test/resource")
 
 #define test for Cruise Control
 do_test ("CruiseControl_test" 1 "${TEST_RESOURCE_DIR}/test1/Input1.txt" "${TEST_RESOURCE_DIR}/test1/ExpectedOutput1.txt" "True")

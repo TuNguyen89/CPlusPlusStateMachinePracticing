@@ -1,5 +1,3 @@
-
-#include <cctype>
 #include "CommonTestFunctions.h"
 
 
@@ -170,7 +168,7 @@ vector<UserInput> parseInputFile(string fileName)
 
 std::string removeAllSpace(string& orgin)
 {
-   orgin.erase(std::remove_if(orgin.begin(), orgin.end(), std::isspace),
+   orgin.erase(std::remove(orgin.begin(), orgin.end(), ' '),
       orgin.end());
 
    return orgin;

@@ -2,3 +2,6 @@
 
 #define CruiseControl_VERSION_MAJOR @CruiseControl_VERSION_MAJOR@
 #define CruiseControl_VERSION_MINOR @CruiseControl_VERSION_MINOR@
+
+//Output file
+#define CruiseControl_OUTPUT_FILE_DIR "@CruiseControl_OUTPUT_FILE_DIR@"
